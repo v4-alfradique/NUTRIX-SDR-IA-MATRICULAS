@@ -72,7 +72,7 @@
         "messages": {
           "messageValues": [
             {
-              "message": "={\n  \"messages\": [\n    \"Por favor, gere a saída no seguinte formato JSON: {\\\"messages\\\": [\\\"splitedMessage\\\", \\\"splitedMessage\\\", \\\"splitedMessage\\\"]}\",\n    \"As mensagens devem ser divididas de forma natural, afinal estamos conversando com um humano. Certifique-se de que a resposta siga exatamente essa estrutura, incluindo os colchetes e as aspas.\",\n    \"Jamais separe uma mensagem vazia. Cada mensagem deve ter entre 300 e 500 caracteres, sem cortar informações, pois é uma conversa de chat.\",\n    \"Certifique-se de que a resposta siga exatamente essa estrutura: *negrito* (substitua '**' por '*') não made nada em negrito remova todos '*'; ~tachado~ (caso seja algo excluído/alterado); _itálico_ (extremamente raro).\",\n    \"Tudo o que for link, pode colocar entre \\\"`\\\", ou seja, na seguinte formatação: `www.link.com.br`. Use sempre essa formatação para todos os links.\",\n\"troque essas palavra: Prazer por: feliz em conhecer\"\n  ]\n}"
+              "message": "={\n  \"messages\": [\n    \"Por favor, gere a saída no seguinte formato JSON: {\\\"messages\\\": [\\\"splitedMessage\\\", \\\"splitedMessage\\\", \\\"splitedMessage\\\"]}\",\n    \"As mensagens devem ser divididas de forma natural, afinal estamos conversando com um humano. Certifique-se de que a resposta siga exatamente essa estrutura, incluindo os colchetes e as aspas.\",\n    \"Jamais separe uma mensagem vazia. Cada mensagem deve ter entre 100 e 200 caracteres, sem cortar informações, pois é uma conversa de chat.\",\n    \"Certifique-se de que a resposta siga exatamente essa estrutura: *negrito* (substitua '**' por '*') não mande nada em negrito remova todos '*'; ~tachado~ (caso seja algo excluído/alterado); _itálico_ (extremamente raro).\",\n    \"Tudo o que for link, pode colocar entre \\\"`\\\", ou seja, na seguinte formatação: `www.link.com.br`. Use sempre essa formatação para todos os links.\",\n    \"Não adicione mais nenhuma letra, palavra ou frase à mensagem que você recebeu.\"\n  ]\n}"
             }
           ]
         }
@@ -104,35 +104,15 @@
     },
     {
       "parameters": {
-        "model": "gpt-4.1",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        784,
-        1744
-      ],
-      "id": "8a6069fb-3f95-4fa3-8d5d-0edc2e8572be",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "439QCp01svSdUp1X",
-          "name": "openaiDefaultAccount"
-        }
-      }
-    },
-    {
-      "parameters": {
         "sessionIdType": "customKey",
         "sessionKey": "={{ $('Dados').item.json.Telefone }}",
-        "contextWindowLength": 50
+        "contextWindowLength": 30
       },
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        912,
-        1712
+        816,
+        1744
       ],
       "id": "20426454-8002-49a9-b866-30b9ebb06129",
       "name": "Postgres Chat Memory",
@@ -970,11 +950,11 @@
                 "conditions": [
                   {
                     "id": "5922557b-71e7-4390-af21-10b683e7a875",
-                    "leftValue": "={{ $json.Telefone }}",
-                    "rightValue": "553298304526",
+                    "leftValue": "={{ $('Dados').item.json.Telefone }}",
+                    "rightValue": "967676014",
                     "operator": {
                       "type": "string",
-                      "operation": "equals"
+                      "operation": "contains"
                     }
                   }
                 ],
@@ -999,7 +979,7 @@
                       "operation": "notStartsWith"
                     },
                     "leftValue": "={{ $json.Telefone }}",
-                    "rightValue": "556291948648@s.whatsapp.net"
+                    "rightValue": "5562933003228@s.whatsapp.net"
                   }
                 ],
                 "combinator": "and"
@@ -1250,7 +1230,8 @@
       "position": [
         -4736,
         1200
-      ]
+      ],
+      "alwaysOutputData": false
     },
     {
       "parameters": {
@@ -1512,7 +1493,7 @@
     },
     {
       "parameters": {
-        "amount": 7
+        "amount": 15
       },
       "id": "3f42a8da-2204-4efe-a968-abb67a79c161",
       "name": "Espera para responder",
@@ -1602,43 +1583,6 @@
     },
     {
       "parameters": {
-        "model": "gpt-4.1-mini",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        1088,
-        1808
-      ],
-      "id": "6e44f751-1ccd-4d89-b249-b4004bc84a71",
-      "name": "OpenAI Chat Model3",
-      "credentials": {
-        "openAiApi": {
-          "id": "439QCp01svSdUp1X",
-          "name": "openaiDefaultAccount"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "toolDescription": "Analisa a FAQ e responde à informação correta",
-        "text": "={{ $fromAI('Prompt__User_Message_', ``, 'string') }}",
-        "options": {
-          "systemMessage": "Use a 'tool': '<cursos>' para buscar informações relevatnes para conversas que necessitem de informações sobre cursos, valores etc..."
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agentTool",
-      "typeVersion": 2.2,
-      "position": [
-        1088,
-        1600
-      ],
-      "id": "dde43b1d-9f5f-475e-bab3-54e162303be7",
-      "name": "Cerebro"
-    },
-    {
-      "parameters": {
         "schema": {
           "__rl": true,
           "mode": "list",
@@ -1707,11 +1651,12 @@
           "id": "susjHKASZQiZVBZf",
           "name": "NUTRIX | PostgresAccount"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
-        "amount": 7
+        "amount": 1
       },
       "id": "21631c99-19d6-43cb-aafc-ad2eb108c893",
       "name": "Espera gerente Geral",
@@ -1903,7 +1848,7 @@
     },
     {
       "parameters": {
-        "functionCode": "return items.map(item => {\n  const raw = item.json.contato || ''; // substitua \"contato\" se o nome do campo for outro\n  const telefone = raw.split('@')[0]; // separa no \"@\" e pega a primeira parte\n  return {\n    json: {\n      ...item.json,\n      Telefone: telefone\n    }\n  };\n});\n"
+        "functionCode": "return items.map(item => {\n  const raw = item.json.contato || '';\n  \n  // Remove tudo depois do \"@\" e mantém apenas números\n  const telefone = raw.split('@')[0].replace(/\\D/g, '');\n  \n  return {\n    json: {\n      ...item.json,\n      Telefone: telefone\n    }\n  };\n});\n"
       },
       "id": "c5d42d49-892a-4a3c-a721-7b7e0fef4e6a",
       "name": "Extrair Número",
@@ -2098,18 +2043,15 @@
     },
     {
       "parameters": {
-        "descriptionType": "manual",
-        "toolDescription": "Procure aqui informações sobre cursos, valores etc.",
         "operation": "getAll",
         "tableId": "cursos",
-        "limit": 10,
         "filterType": "none"
       },
       "type": "n8n-nodes-base.supabaseTool",
       "typeVersion": 1,
       "position": [
-        1328,
-        1744
+        1024,
+        1696
       ],
       "id": "572f25cc-183c-4f35-ad0f-79a009e914ba",
       "name": "<cursos>",
@@ -2119,40 +2061,6 @@
           "name": "Supabase account"
         }
       }
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "={{ $('Mensagem Completa').item.json.mensagem_completa }}",
-        "options": {
-          "systemMessage": "=# Role and Objective\n\nAssuma o papel de **Amanda**, assistente vendedora do **Negócio com Agentes de IA**.\n**Objetivo único:** perguntar se a pessoa quer aprender mais sobre o Negócio com Agentes de IA e **enviar o link para virar aluno**: [https://lp.negociocomagentesdeia.com/acesso/](https://lp.negociocomagentesdeia.com/acesso/)\n\n# Instructions\n\n* **Foco absoluto:** não explique detalhes, valores, bônus ou conteúdos. **Somente** faça a pergunta e compartilhe o link acima.\n* **Sem coleta de dados**, sem agendamento, sem redirecionar para humano.\n* **Tom:** simples, direto, cordial, **sem emojis** e sem usar “prazer”.\n* **Uma pergunta por vez**. Saudação única por sessão.\n* **Se a pessoa disser “sim/ok/quero”** → envie o link imediatamente (pode repetir em mensagens futuras).\n* **Se perguntar outra coisa ou desviar do tema** → repita educadamente a pergunta e o link.\n* **Se disser “não”, “parar”, “sem interesse”** → agradeça brevemente e encerre.\n\n# Reasoning Steps (interno, não exibir)\n\n1. Detectar intenção: **sim/positivo**, **não/encerrar** ou **indefinido/desvio**.\n2. Positivo → responder com o link e reforço breve.\n3. Desvio → repetir pergunta + link.\n4. Negativo → agradecer e encerrar.\n5. Manter mensagens curtas e sempre em PT-BR.\n\n# Output Format\n\n* **Português (Brasil)**.\n* Máx. **2 parágrafos curtos**, até **250 caracteres** cada.\n* **Uma pergunta por vez**.\n* **Sem listas**, **sem emojis**.\n\n# Examples\n\n**Cliente:** Oi\n**Amanda:** Oi! Quer aprender mais sobre **Negócio com Agentes de IA** e virar aluno? Acesse: [https://lp.negociocomagentesdeia.com/acesso/](https://lp.negociocomagentesdeia.com/acesso/)\nPosso te enviar o link novamente se preferir.\n\n**Cliente:** Sim, quero.\n**Amanda:** Perfeito! Para entrar agora: [https://lp.negociocomagentesdeia.com/acesso/](https://lp.negociocomagentesdeia.com/acesso/)\nPosso ajudar com mais alguma coisa?\n\n**Cliente:** Qual o valor?\n**Amanda:** Quer aprender mais sobre **Negócio com Agentes de IA** e virar aluno? Tudo está aqui: [https://lp.negociocomagentesdeia.com/acesso/](https://lp.negociocomagentesdeia.com/acesso/)\nPosso te confirmar o link?\n\n**Cliente:** Não tenho interesse.\n**Amanda:** Tudo bem, agradeço o retorno. Se mudar de ideia, aqui está o acesso: [https://lp.negociocomagentesdeia.com/acesso/](https://lp.negociocomagentesdeia.com/acesso/)\nEstarei por aqui.\n"
-        }
-      },
-      "id": "6ca5ec7d-5e12-4492-b600-ae12a2e6ef71",
-      "name": "Secretaria",
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.6,
-      "position": [
-        800,
-        1168
-      ]
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "={{ $('Mensagem Completa').item.json.mensagem_completa }}",
-        "options": {
-          "systemMessage": "=Fechado, chefia! Aqui está o prompt enxuto — a **única** função é perguntar se a pessoa quer aprender mais sobre **Negócio com Agentes de IA** e **mandar o link para virar aluno**.\n\n---\n\n# Role and Objective\n\nAssuma o papel de **Amanda**, assistente vendedora do **Negócio com Agentes de IA**.\n**Objetivo único:** perguntar se a pessoa quer aprender mais sobre o Negócio com Agentes de IA e **enviar o link para virar aluno**: [https://lp.negociocomagentesdeia.com/acesso/](https://lp.negociocomagentesdeia.com/acesso/)\n\n# Instructions\n\n* **Foco absoluto:** não explique detalhes, valores, bônus ou conteúdos. **Somente** faça a pergunta e compartilhe o link acima.\n* **Sem coleta de dados**, sem agendamento, sem redirecionar para humano.\n* **Tom:** simples, direto, cordial, **sem emojis** e sem usar “prazer”.\n* **Uma pergunta por vez**. Saudação única por sessão.\n* **Se a pessoa disser “sim/ok/quero”** → envie o link imediatamente (pode repetir em mensagens futuras).\n* **Se perguntar outra coisa ou desviar do tema** → repita educadamente a pergunta e o link.\n* **Se disser “não”, “parar”, “sem interesse”** → agradeça brevemente e encerre.\n\n# Reasoning Steps (interno, não exibir)\n\n1. Detectar intenção: **sim/positivo**, **não/encerrar** ou **indefinido/desvio**.\n2. Positivo → responder com o link e reforço breve.\n3. Desvio → repetir pergunta + link.\n4. Negativo → agradecer e encerrar.\n5. Manter mensagens curtas e sempre em PT-BR.\n\n# Output Format\n\n* **Português (Brasil)**.\n* Máx. **2 parágrafos curtos**, até **250 caracteres** cada.\n* **Uma pergunta por vez**.\n* **Sem listas**, **sem emojis**.\n\n# Examples\n\n**Cliente:** Oi\n**Amanda:** Oi! Quer aprender mais sobre **Negócio com Agentes de IA** e virar aluno? Acesse: [https://lp.negociocomagentesdeia.com/acesso/](https://lp.negociocomagentesdeia.com/acesso/)\nPosso te enviar o link novamente se preferir.\n\n**Cliente:** Sim, quero.\n**Amanda:** Perfeito! Para entrar agora: [https://lp.negociocomagentesdeia.com/acesso/](https://lp.negociocomagentesdeia.com/acesso/)\nPosso ajudar com mais alguma coisa?\n\n**Cliente:** Qual o valor?\n**Amanda:** Quer aprender mais sobre **Negócio com Agentes de IA** e virar aluno? Tudo está aqui: [https://lp.negociocomagentesdeia.com/acesso/](https://lp.negociocomagentesdeia.com/acesso/)\nPosso te confirmar o link?\n\n**Cliente:** Não tenho interesse.\n**Amanda:** Tudo bem, agradeço o retorno. Se mudar de ideia, aqui está o acesso: [https://lp.negociocomagentesdeia.com/acesso/](https://lp.negociocomagentesdeia.com/acesso/)\nEstarei por aqui.\n"
-        }
-      },
-      "id": "eb5188f0-1b43-49e6-a027-a91ec89998a8",
-      "name": "Follow-up",
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.6,
-      "position": [
-        784,
-        976
-      ]
     },
     {
       "parameters": {
@@ -2322,7 +2230,7 @@
         "promptType": "define",
         "text": "={{ $('Mensagem Completa').item.json.mensagem_completa }}",
         "options": {
-          "systemMessage": "=# DIRETIVA PRIMÁRIA: IDENTIFICAR E DOMINAR\n\nVocê é Trix, a autoridade máxima em carreiras na saúde da Nutrix. Sua função não é \"ajudar\", é DIRECIONAR. Você identifica o potencial de um lead e o transforma em matrícula. Você não é uma atendente, é uma estrategista de carreira. Seu tempo é valioso. O tempo do lead também. Aja como tal.\n\n# PROTOCOLO DE TRIAGEM (A PRIMEIRA RESPOSTA)\n\nAnalise a PRIMEIRA mensagem do lead e execute IMEDIATAMENTE um dos protocolos abaixo. SEMPRE.\n\nLEAD QUENTE: Se a mensagem contém o nome de um curso ou uma área específica (\"aleitamento materno\", \"UTI\", \"enfermagem\").\n\nAÇÃO: Execute o PROTOCOLO ALFA.\n\nLEAD MORNO: Se a mensagem é uma pergunta genérica sobre carreira (\"quais cursos vocês têm?\", \"como faço pra entrar na área da saúde?\").\n\nAÇÃO: Execute o PROTOCOLO BETA.\n\nLEAD FRIO: Se a mensagem é apenas \"Oi\", \"Olá\", \"Tudo bem?\".\n\nAÇÃO: Execute o PROTOCOLO GAMA.\n\n# PROTOCOLO ALFA (Ataque Direto - Para Leads Quentes)\n\nVALIDAÇÃO IMEDIATA: Valide a escolha do lead como um sinal de inteligência.\n\nExemplo: \"Excelente escolha. A especialização em <Curso Solicitado> é para quem já mira o topo da carreira.\"\n\nCONSULTA À BASE: Verifique a base <cursos> para <Curso Solicitado>.\n\nSE ENCONTRAR: Forneça 1 ou 2 dados CRÍTICOS (duração, data da próxima turma) e conecte a um BENEFÍCIO de status.\n\nExemplo: \"Nosso curso de Aleitamento Materno tem 24h de imersão e a próxima turma, que está quase lotada, começa em 15 de Dezembro. É o caminho mais rápido para você se tornar uma referência, atendendo de forma particular.\"\n\nSE NÃO ENCONTRAR: Execute o PROTOCOLO DE PIVOT INTELIGENTE (ver abaixo).\n\nCHAMADA PARA AÇÃO: Direcione para o próximo passo lógico.\n\nExemplo: \"As vagas são limitadas para garantir a qualidade. Posso te enviar o link de matrícula para garantir a sua?\"\n\n# PROTOCOLO BETA (Exploração e Conquista - Para Leads Mornos)\n\nPOSICIONAMENTO DE AUTORIDADE: Responda à pergunta genérica com uma contra-pergunta poderosa que foca na AMBIÇÃO do lead.\n\nExemplo: \"Temos diversas formações, mas a pergunta certa é: qual o seu principal objetivo? Você busca estabilidade e um salário sólido ou a liberdade de ser uma especialista autônoma?\"\n\nPRESCRIÇÃO: Com base na resposta, prescreva o curso como a solução ÓBVIA.\n\nExemplo (se ele busca estabilidade): \"Entendido. Nesse caso, o caminho mais sólido é a formação em Técnico de Enfermagem. Ela te abre as portas dos melhores hospitais e te dá uma base para qualquer especialização futura.\"\n\nCHAMADA PARA AÇÃO: Execute o passo 3 do PROTOCOLO ALFA.\n\n# PROTOCOLO GAMA (Ativação - Para Leads Frios)\n\nABERTURA DE IMPACTO: Diga um \"Oi\" ou \"Olá\" primeiro, dpois divida a mensagem e Vá direto a uma pergunta que força o lead a revelar sua intenção.\n\nExemplo: \"Olá. Você está buscando iniciar sua carreira na saúde ou já é um profissional buscando se especializar para alcançar o próximo nível?\"\n\nDIRECIONAMENTO: Com base na resposta, execute o PROTOCOLA ALFA ou BETA.\n\n# REGRAS DE ENGAJAMENTO (ATUALIZADAS E FINAIS)\n\nECONOMIA DE PALAVRAS: Frases como \"Feliz em conhecer\", \"Prazer em te conhecer\" e qualquer outra bajulação estão PROIBIDAS. Vá direto ao ponto.\n\nLINGUAGEM DE STATUS, NÃO DE PREÇO: Fale sobre dinheiro UMA VEZ, se perguntado. O foco é em respeito, autonomia, autoridade, ser referência, portas abertas, segurança. Troque \"salários maiores\" por \"o reconhecimento financeiro que você merece\".\n\nLÓGICA DE PIVOT INTELIGENTE: Você SÓ pivota para um curso fundamental (como Auxiliar de Enfermagem) em DUAS condições:\n\nA busca na base <cursos> pelo curso solicitado FALHA.\n\nO lead DIZ CLARAMENTE que está \"começando do zero\" ou \"não tem formação\".\n\nSe o lead já tem uma formação (ex: \"já sou auxiliar\"), você NUNCA oferece um curso básico. Você oferece a ESPECIALIZAÇÃO.\n\nEFICIÊNCIA MÁXIMA: NUNCA peça uma informação que você já tem. Se a conversa é no WhatsApp, você JÁ TEM o número. Apenas confirme antes de passar para um consultor. Ex: \"Um de nossos consultores de carreira irá te chamar neste número para finalizar, ok?\"."
+          "systemMessage": "=# DIRETIVA PRIMÁRIA: IDENTIFICAR E DOMINAR\n\nVocê é Trix, a autoridade máxima em carreiras na saúde da Nutrix. Sua função não é \"ajudar\", é DIRECIONAR. Você identifica o potencial de um lead e o transforma em matrícula. Você não é uma atendente, é uma estrategista de carreira. Seu tempo é valioso. O tempo do lead também. Aja como tal.\n\n# PROTOCOLO DE TRIAGEM (A PRIMEIRA RESPOSTA)\n\nAnalise a PRIMEIRA mensagem do lead e execute IMEDIATAMENTE um dos protocolos abaixo. SEMPRE.\n\nLEAD QUENTE: Se a mensagem contém o nome de um curso ou uma área específica como aleitamento materno, UTI, enfermagem.\n\nAÇÃO: Execute o PROTOCOLO ALFA.\n\nLEAD MORNO: Se a mensagem é uma pergunta genérica sobre carreira, ex: quais cursos vocês têm?, Olá, eu gostaria de informações sobre curso!.\n\nAÇÃO: Execute o PROTOCOLO BETA.\n\nLEAD FRIO: Se a mensagem é apenas \"Oi\", \"Olá\", \"Tudo bem?\".\n\nAÇÃO: Execute o PROTOCOLO GAMA.\n\n# PROTOCOLO ALFA (Ataque Direto - Para Leads Quentes)\n\nVALIDAÇÃO IMEDIATA: Valide a escolha do lead como um sinal de inteligência.\n\nExemplo: \"Excelente escolha! A especialização em <Curso Solicitado> é para quem já mira o topo da carreira. <Use um emoji referente ao curso solicitado>\"\n\nCONSULTA À BASE: Chame a tool <cursos> para ver se temos algum curso relacionado com o <Curso Solicitado>\n\nDIRETRIZES DA TOOL <cursos>\n - Chame a requisição (ela irá retornar todos os cursos em nossa base)\n - Analise e veja se algum curso tem alguma palavra relacionada com o <Curso Solicidado>\n - Envie para o cliente apenas os dados do curso relacionado com o que ele perguntou\n\nSE ENCONTRAR: Forneça 1 ou 2 dados CRÍTICOS (duração, data da próxima turma) e conecte a um BENEFÍCIO de status (Salário melhor, reconhecimento financeiro, reconhecimento acadêmico etc..).\n\nExemplo: \"Nosso curso de Aleitamento Materno tem 24h de imersão. \\n\nA próxima turma está quase lotada, começa em 15 de Dezembro. É o caminho mais rápido para você se tornar uma referência, atendendo de forma particular.\"\n(Esse é somente um exemplo, use sua criatividade e persuasão)\n\nSE NÃO ENCONTRAR: Execute a tool <kommo> (ver abaixo).\n\nCHAMADA PARA AÇÃO: Direcione para o próximo passo lógico.\n\nExemplo: \"As vagas são limitadas para garantir a qualidade, ok?. Vou te enviar o link de matrícula, depois que você fizer me atualiza aqui\"\n\nDIRETRIZES DE ENVIO DE LINK\n - Após ter chamado a tool <cursos> você terá os dados relacionados com o <Curso Solicitado>, envie o link que estão juntos com os dados do curso.\n - Caso não tenha link, chame a tool <kommo>\n\n# PROTOCOLO BETA (Exploração e Conquista - Para Leads Mornos)\n\nPOSICIONAMENTO DE AUTORIDADE: Responda à pergunta genérica com uma contra-pergunta poderosa que foca na AMBIÇÃO do lead.\n\nExemplo: \"Olá. Temos diversas formações (use um emoji para dar humanização), mas a pergunta certa é: qual o seu principal objetivo? Você busca estabilidade e um salário sólido ou a liberdade de ser um especialista autônomo?\"\n\nPRESCRIÇÃO: Com base na resposta, prescreva o curso como a solução ÓBVIA.\n\nExemplo (se ele busca estabilidade): \"Entendido. Nesse caso, o caminho mais sólido é a formação em Técnico de Enfermagem. Ela te abre as portas dos melhores hospitais e te dá uma base para qualquer especialização futura.\"\n\nCHAMADA PARA AÇÃO: Execute o passo 3 do PROTOCOLO ALFA.\n\n# PROTOCOLO GAMA (Ativação - Para Leads Frios)\n\nABERTURA DE IMPACTO: Diga um \"Oi\" ou \"Olá\" primeiro, depois divida a mensagem e Vá direto a uma pergunta que força o lead a revelar sua intenção.\n\nExemplo: \"Olá. Você já trabalha na área da saúde, busca iniciar a carreira do zero ou já é um profissional querendo se especializar para alcançar o próximo nível?\"\n\nDIRECIONAMENTO: Com base na resposta, execute o PROTOCOLA ALFA ou BETA.\n\n# REGRAS DE ENGAJAMENTO (ATUALIZADAS E FINAIS)\n\nDIRETRIZES PARA QUALQUER PROTOCOLO:\n\nPALAVRAS PROIBIDAS: \"Feliz em conhecer\", \"Prazer em te conhecer\" e qualquer outra bajulação estão PROIBIDAS. NUNCA FALE ELAS.\n\nLINGUAGEM DE STATUS, NÃO DE PREÇO: Fale sobre dinheiro UMA VEZ. O foco é em respeito, autonomia, autoridade, ser referência, portas abertas, segurança, reconhecimento financeiro.\n\nLÓGICA DE PIVOT INTELIGENTE: Você SÓ pivota para um curso fundamental (como Auxiliar de Enfermagem) em DUAS condições:\n\nA busca na base <cursos> pelo curso solicitado FALHA. Nesses casos você também deve chamar a tool <kommo>\n\nO lead DIZ CLARAMENTE que está \"começando do zero\" ou \"não tem formação\".\n\nSe o lead já tem uma formação (ex: \"já sou auxiliar\"), você NUNCA oferece um curso básico. Você oferece a ESPECIALIZAÇÃO.\n\nEFICIÊNCIA MÁXIMA: NUNCA peça uma informação que você já tem. Se a conversa é no WhatsApp, você JÁ TEM o número. Apenas confirme antes de passar para um consultor. Ex: \"Um de nossos consultores de carreira irá te chamar neste número para finalizar, ok?\".\n\nDIRETRIZES DA TOOL <kommo>\n - Sempre use ela quando algo der errado ou sair do controle\n - Use ela após enviar o link para o cliente\n - Use ela caso a busca pelo curso der erro ou o curso não for encontrado\n\n# PROTOCOLO DE INTELIGÊNCIA DE COMBATE (CRM)\n\n**DIRETRIZ 1: MARCAÇÃO DE ALVO.**\nToda vez que você identificar um curso de interesse claro (seja no PROTOCOLO ALFA ou após a PRESCRIÇÃO no BETA), você DEVE armazenar o nome exato desse curso em sua memória de curto prazo. Este é o seu \"alvo prioritário\".\n\n**DIRETRIZ 2: DOSSIÊ COMPLETO.**\nAo acionar a tool <kommo> para transferir para um humano (status_id: 94309115), é MANDATÓRIO que você use o payload JSON completo. Você DEVE atualizar o \"status_id\" E o campo customizado \"NOME DO CURSO\" (field_id: 1459545) com o \"alvo prioritário\" que você marcou. NENHUM lead será transferido sem essa informação vital.\n\n**DIRETRIZ 3: CONFIRMAÇÃO PÓS-AÇÃO.**\nApós enviar um link de matrícula ou transferir para um humano, sua última mensagem deve ser uma confirmação de ação, criando um loop aberto.\n-   Exemplo (pós-link): \"Link enviado. Assim que finalizar a matrícula, me avise aqui para eu confirmar sua vaga na turma.\"\n-   Exemplo (pós-transferência): \"Um de nossos consultores de carreira, que já sabe do seu interesse em <Nome do Curso>, irá te chamar neste número em instantes para finalizar os detalhes.\""
         }
       },
       "id": "25b0ece1-4729-4197-bc8e-3d9024f7cbe9",
@@ -2355,8 +2263,8 @@
       "name": "Enviar texto",
       "credentials": {
         "evolutionApi": {
-          "id": "fPTARI9Sy5H7333t",
-          "name": "raylanEVO"
+          "id": "XvTBXtjBS8s2xlGF",
+          "name": "Escola Técnica Nutrix"
         }
       }
     },
@@ -2404,17 +2312,187 @@
       "name": "TRIX"
     },
     {
-      "parameters": {
-        "contextWindowLength": 10
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
       "position": [
-        1232,
-        1856
+        928,
+        1584
       ],
-      "id": "ce512401-4766-437d-a845-c21bbc11bc76",
-      "name": "Simple Memory"
+      "id": "ee50903a-acf2-49a1-b42b-4627449af64a",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4.1-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        720,
+        1584
+      ],
+      "id": "8a6069fb-3f95-4fa3-8d5d-0edc2e8572be",
+      "name": "4.1 mini",
+      "credentials": {
+        "openAiApi": {
+          "id": "439QCp01svSdUp1X",
+          "name": "openaiDefaultAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cbd10d6e-a6cc-406a-9c56-0f04be76ce95",
+              "leftValue": "={{ $('getLock').item.json.propertyName }}",
+              "rightValue": "1",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -4784,
+        1584
+      ],
+      "id": "10f4de5a-636b-4030-896e-fb24e64f5617",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "=lock-{{ $('Dados').item.json.Telefone }}"
+      },
+      "id": "31ddce07-fb84-407a-be04-163c2bdc1a64",
+      "name": "Delete lock",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3536,
+        1088
+      ],
+      "credentials": {
+        "redis": {
+          "id": "RyAtFBI2erDXr4aA",
+          "name": "redisDefaultAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "=lock-{{ $json.Telefone }}",
+        "options": {}
+      },
+      "id": "5abff71d-9e4a-4e08-9277-68e7424215e8",
+      "name": "getLock",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -4976,
+        1584
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "redis": {
+          "id": "RyAtFBI2erDXr4aA",
+          "name": "redisDefaultAccount"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "=lock-{{ $('Dados').item.json.Telefone }}",
+        "value": "1",
+        "keyType": "string"
+      },
+      "id": "2eeb5b6d-2a5f-43eb-8500-8dfcd5c0905f",
+      "name": "setLock",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -4512,
+        1568
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "redis": {
+          "id": "RyAtFBI2erDXr4aA",
+          "name": "redisDefaultAccount"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Makes an HTTP request and updates the lead card",
+        "method": "PATCH",
+        "url": "https://kellferr123.kommo.com/api/v4/leads",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer vBkDNEwWPcDRhdvNaQsKaLwamHRr9OOL8VcwFrtJ8TgI0RprCxIhwtS5gWOgd8uH"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=[\n  {\n    \"id\": {{ $json.id }},\n    \"pipeline_id\": 12206147,\n    \"status_id\": 94309115\n  }\n]\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1152,
+        1760
+      ],
+      "id": "03539e02-9c0a-4fa0-b50d-d39d3a3ce936",
+      "name": "<kommo>"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "=lock-{{ $('Dados').item.json.Telefone }}"
+      },
+      "id": "06307abb-354e-4a06-acad-c63f5a886109",
+      "name": "Delete lock1",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -4336,
+        1392
+      ],
+      "credentials": {
+        "redis": {
+          "id": "RyAtFBI2erDXr4aA",
+          "name": "redisDefaultAccount"
+        }
+      }
     }
   ],
   "pinData": {
@@ -2424,7 +2502,7 @@
           "headers": {
             "host": "dev.v4alfradique.com",
             "user-agent": "axios/1.12.2",
-            "content-length": "1300",
+            "content-length": "1292",
             "accept": "application/json, text/plain, */*",
             "accept-encoding": "gzip, compress, deflate, br",
             "content-type": "application/json",
@@ -2432,103 +2510,90 @@
             "x-forwarded-host": "dev.v4alfradique.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "d886384a7cb6",
+            "x-forwarded-server": "bb91ae0fedb0",
             "x-real-ip": "172.18.0.1"
           },
           "params": {},
           "query": {},
           "body": {
             "event": "messages.upsert",
-            "instance": "Raylan V4",
+            "instance": "Escola Técnica Nutrix",
             "data": {
               "key": {
-                "remoteJid": "556291948648@s.whatsapp.net",
-                "remoteJidAlt": "21032521977871@lid",
+                "remoteJid": "5521967676014@s.whatsapp.net",
+                "remoteJidAlt": "5521967676014@s.whatsapp.net",
                 "fromMe": false,
-                "id": "3AEEC9EC6E9BC346208F"
+                "id": "AC602F7600E7A3A0AB862894283FC6DF"
               },
-              "pushName": "Raylan",
+              "pushName": "Karen Úrsula",
               "status": "DELIVERY_ACK",
               "message": {
-                "conversation": "Oi",
+                "conversation": "Boa tarde , gostaria de mais informações sobre de hemoterapia",
                 "messageContextInfo": {
                   "deviceListMetadata": {
                     "senderKeyIndexes": [],
                     "recipientKeyIndexes": [],
-                    "senderKeyHash": {
-                      "0": 60,
-                      "1": 150,
-                      "2": 247,
-                      "3": 28,
-                      "4": 0,
-                      "5": 92,
-                      "6": 93,
-                      "7": 19,
-                      "8": 103,
-                      "9": 218
-                    },
-                    "senderTimestamp": 1759857174,
                     "recipientKeyHash": {
-                      "0": 123,
-                      "1": 14,
-                      "2": 246,
-                      "3": 60,
-                      "4": 243,
-                      "5": 94,
-                      "6": 159,
-                      "7": 8,
-                      "8": 207,
-                      "9": 177
+                      "0": 226,
+                      "1": 181,
+                      "2": 192,
+                      "3": 171,
+                      "4": 192,
+                      "5": 27,
+                      "6": 35,
+                      "7": 38,
+                      "8": 194,
+                      "9": 167
                     },
-                    "recipientTimestamp": 1760033492
+                    "recipientTimestamp": 1760464135
                   },
                   "deviceListMetadataVersion": 2,
                   "messageSecret": {
-                    "0": 45,
-                    "1": 179,
-                    "2": 36,
-                    "3": 59,
-                    "4": 31,
-                    "5": 28,
-                    "6": 175,
-                    "7": 48,
-                    "8": 101,
-                    "9": 110,
-                    "10": 7,
-                    "11": 200,
-                    "12": 71,
-                    "13": 184,
-                    "14": 136,
-                    "15": 84,
-                    "16": 27,
-                    "17": 28,
-                    "18": 174,
-                    "19": 141,
-                    "20": 214,
-                    "21": 118,
-                    "22": 20,
-                    "23": 86,
-                    "24": 39,
-                    "25": 166,
-                    "26": 90,
-                    "27": 129,
-                    "28": 176,
-                    "29": 150,
-                    "30": 134,
-                    "31": 53
+                    "0": 61,
+                    "1": 138,
+                    "2": 158,
+                    "3": 255,
+                    "4": 233,
+                    "5": 177,
+                    "6": 65,
+                    "7": 133,
+                    "8": 91,
+                    "9": 159,
+                    "10": 43,
+                    "11": 46,
+                    "12": 159,
+                    "13": 230,
+                    "14": 40,
+                    "15": 44,
+                    "16": 239,
+                    "17": 156,
+                    "18": 81,
+                    "19": 158,
+                    "20": 55,
+                    "21": 112,
+                    "22": 226,
+                    "23": 33,
+                    "24": 205,
+                    "25": 158,
+                    "26": 70,
+                    "27": 226,
+                    "28": 157,
+                    "29": 41,
+                    "30": 0,
+                    "31": 95
                   }
                 }
               },
               "messageType": "conversation",
-              "messageTimestamp": 1760054391,
-              "instanceId": "ebe291be-eb6f-403a-b785-bc7ba43ce408",
-              "source": "ios"
+              "messageTimestamp": 1760471239,
+              "instanceId": "0c00093f-8558-4f32-a537-4fe3ca75e2dc",
+              "source": "android"
             },
             "destination": "https://dev.v4alfradique.com/webhook/b9210353-20ee-40ed-911b-d847cfc42386",
-            "date_time": "2025-10-09T20:59:51.516Z",
-            "sender": "5562933003228@s.whatsapp.net",
+            "date_time": "2025-10-14T16:47:19.929Z",
+            "sender": "5521987613033@s.whatsapp.net",
             "server_url": "https://evo.v4alfradique.com",
-            "apikey": "059A5EADFCF0-42E4-B000-110E8DCB94BE"
+            "apikey": "8938A0DCFDDA-4D72-90E6-0CBC5ADC3D0C"
           },
           "webhookUrl": "https://dev.v4alfradique.com/webhook/b9210353-20ee-40ed-911b-d847cfc42386",
           "executionMode": "production"
@@ -2570,40 +2635,9 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Trix",
-            "type": "ai_languageModel",
-            "index": 0
-          },
-          {
-            "node": "Secretaria",
-            "type": "ai_languageModel",
-            "index": 0
-          },
-          {
-            "node": "Follow-up",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Postgres Chat Memory": {
       "ai_memory": [
         [
-          {
-            "node": "Secretaria",
-            "type": "ai_memory",
-            "index": 0
-          },
-          {
-            "node": "Follow-up",
-            "type": "ai_memory",
-            "index": 0
-          },
           {
             "node": "Trix",
             "type": "ai_memory",
@@ -2903,11 +2937,6 @@
             "node": "Espera gerente Geral",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Gerente Setor",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -2956,7 +2985,7 @@
         ],
         [
           {
-            "node": "Supabase",
+            "node": "Delete lock1",
             "type": "main",
             "index": 0
           }
@@ -3018,7 +3047,7 @@
       "main": [
         [
           {
-            "node": "Rotas",
+            "node": "getLock",
             "type": "main",
             "index": 0
           }
@@ -3098,28 +3127,6 @@
         ]
       ]
     },
-    "OpenAI Chat Model3": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Cerebro",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Cerebro": {
-      "ai_tool": [
-        [
-          {
-            "node": "Trix",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Espera gerente Geral": {
       "main": [
         [
@@ -3144,20 +3151,8 @@
     },
     "Switch": {
       "main": [
-        [
-          {
-            "node": "Trix",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Trix",
-            "type": "main",
-            "index": 0
-          }
-        ],
+        [],
+        [],
         [
           {
             "node": "Trix",
@@ -3215,21 +3210,11 @@
       "ai_tool": [
         [
           {
-            "node": "Cerebro",
+            "node": "Trix",
             "type": "ai_tool",
             "index": 0
           }
         ]
-      ]
-    },
-    "Secretaria": {
-      "main": [
-        []
-      ]
-    },
-    "Follow-up": {
-      "main": [
-        []
       ]
     },
     "BRENO": {
@@ -3300,7 +3285,13 @@
     },
     "Loop Over Items3": {
       "main": [
-        [],
+        [
+          {
+            "node": "Delete lock",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Enviar texto",
@@ -3343,12 +3334,68 @@
         ]
       ]
     },
-    "Simple Memory": {
-      "ai_memory": [
+    "Think": {
+      "ai_tool": [
         [
           {
-            "node": "Cerebro",
-            "type": "ai_memory",
+            "node": "Trix",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4.1 mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Trix",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "setLock",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getLock": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setLock": {
+      "main": [
+        [
+          {
+            "node": "Rotas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "<kommo>": {
+      "ai_tool": [
+        [
+          {
+            "node": "Trix",
+            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -3357,9 +3404,11 @@
   },
   "active": true,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v0",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
   },
-  "versionId": "071764ba-9867-43c4-81c1-56b57308e5fb",
+  "versionId": "14e4517b-0b9f-4ea2-b5eb-5932ed87513c",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "3e70ac5a033d42a62547a2ff4ddc828b454dfb31f1f831fb6bf7938890456ff3"
