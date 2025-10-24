@@ -5,16 +5,16 @@
       "parameters": {
         "content": "# Agentes IA",
         "height": 80,
-        "width": 1556,
+        "width": 1108,
         "color": 4
       },
-      "id": "1db16956-1a34-432c-817d-a1cd7083106b",
+      "id": "a1730ed2-d7b0-4fd8-ae23-03bdcec30e5f",
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        208,
-        816
+        2464,
+        -96
       ]
     },
     {
@@ -22,18 +22,18 @@
         "model": "gpt-4.1-mini",
         "options": {}
       },
-      "id": "9fbde22e-9274-44b4-8f52-3e94920a0a03",
+      "id": "8ffe3bf6-e7e4-4762-a600-144101e05013",
       "name": "OpenAI3",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        1936,
-        1296
+        3744,
+        304
       ],
       "credentials": {
         "openAiApi": {
-          "id": "439QCp01svSdUp1X",
-          "name": "openaiDefaultAccount"
+          "id": "qNDm6pku8uL6dS11",
+          "name": "OpenAI"
         }
       }
     },
@@ -41,13 +41,13 @@
       "parameters": {
         "options": {}
       },
-      "id": "e700c4d8-f165-423c-bb84-425738f0a6a3",
+      "id": "e2b4f43a-8a73-4566-a23b-6b54cc82efbc",
       "name": "Loop Over Items3",
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        2496,
-        1104
+        4304,
+        112
       ]
     },
     {
@@ -55,13 +55,13 @@
         "schemaType": "manual",
         "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"messages\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    }\n  },\n  \"required\": [\"messages\"]\n}"
       },
-      "id": "b38e38ef-9905-4f6f-974d-c1ce54e85db8",
+      "id": "4a76f824-6724-48ec-aa59-5a1c75d1453a",
       "name": "OutputParser1",
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        2096,
-        1296
+        3904,
+        304
       ]
     },
     {
@@ -77,51 +77,14 @@
           ]
         }
       },
-      "id": "e144fb32-e307-4cff-8031-61a0c9b3517e",
+      "id": "2dafab9f-ff5a-4999-b964-2b1f04119e4f",
       "name": "Parser  Chain",
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.4,
       "position": [
-        1920,
-        1104
+        3728,
+        112
       ]
-    },
-    {
-      "parameters": {
-        "content": "# Divisão de Mensagens Inteligente - Texto",
-        "height": 80,
-        "width": 1344,
-        "color": 4
-      },
-      "id": "ac5501d4-1b88-4811-bd37-1d3e7b33c2ac",
-      "name": "Sticky Note19",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        1920,
-        992
-      ]
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Dados').item.json.Telefone }}",
-        "contextWindowLength": 30
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
-      "typeVersion": 1.3,
-      "position": [
-        816,
-        1744
-      ],
-      "id": "20426454-8002-49a9-b866-30b9ebb06129",
-      "name": "Postgres Chat Memory",
-      "credentials": {
-        "postgres": {
-          "id": "susjHKASZQiZVBZf",
-          "name": "NUTRIX | PostgresAccount"
-        }
-      }
     },
     {
       "parameters": {
@@ -182,10 +145,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        1584,
-        1168
+        3392,
+        128
       ],
-      "id": "4e9f8ef0-8b4d-4cec-968c-565e8f4ab337",
+      "id": "909e637a-8eeb-4a91-8011-6df02ab7101b",
       "name": "Switch2"
     },
     {
@@ -195,13 +158,13 @@
           "destinationFieldName": "output"
         }
       },
-      "id": "2472f01e-593f-43bc-b18e-a9a96b163b5b",
+      "id": "911fee59-491d-4d44-9766-8e0005b1074b",
       "name": "Split de Mensagem",
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        2256,
-        1104
+        4064,
+        112
       ]
     },
     {
@@ -209,18 +172,18 @@
         "operation": "delete",
         "key": "={{ $('Dados').item.json.Telefone }}"
       },
-      "id": "e6cb81be-1ff2-4538-92f7-5ac5d6101d9a",
+      "id": "b2b0d952-198c-4723-b4cc-45972c086cee",
       "name": "Delete Memory",
       "type": "n8n-nodes-base.redis",
       "typeVersion": 1,
       "position": [
-        1344,
-        1040
+        3152,
+        128
       ],
       "credentials": {
         "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
+          "id": "SrDRs7V2Dv5H2eEq",
+          "name": "redis"
         }
       }
     },
@@ -240,16 +203,16 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -4144,
-        1184
+        -2320,
+        256
       ],
-      "id": "63f61c2b-a6e8-4f9d-a60a-e5172ca35b32",
+      "id": "e8b697ac-9d2c-4053-b096-78e0fc9a7781",
       "name": "Supabase",
       "alwaysOutputData": true,
       "credentials": {
         "supabaseApi": {
-          "id": "CeMuFZ0UJo4E5m4u",
-          "name": "Supabase account"
+          "id": "iajvDB39xEYpikEc",
+          "name": "NUTRIX"
         }
       }
     },
@@ -281,59 +244,27 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -3936,
-        1200
+        -2112,
+        272
       ],
-      "id": "97be990b-a50a-46b1-bdde-674cc146007c",
+      "id": "923b4e7f-cec2-4cb5-a8ec-83f61a3273f1",
       "name": "If1"
     },
     {
       "parameters": {
-        "content": "# Cadastro Supabase + Encontrar lead na Kommo",
-        "height": 80,
-        "width": 852,
-        "color": 4
-      },
-      "id": "62a136f4-3a56-4293-b74e-2f296d4506ee",
-      "name": "Sticky Note23",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -4144,
-        1024
-      ]
-    },
-    {
-      "parameters": {
         "httpMethod": "POST",
-        "path": "b9210353-20ee-40ed-911b-d847cfc42386",
+        "path": "teste1",
         "options": {}
       },
-      "id": "68d22ebd-fdff-4c90-9ded-80b2013cd39c",
+      "id": "691f7f88-c3a1-4dee-8618-e75ee7f8419c",
       "name": "Webhook EVO",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -5456,
-        1200
+        -3104,
+        176
       ],
       "webhookId": "b9210353-20ee-40ed-911b-d847cfc42386"
-    },
-    {
-      "parameters": {
-        "content": "# Pausar IA",
-        "height": 80,
-        "width": 1048,
-        "color": 4
-      },
-      "id": "80f336e8-bfa2-4e91-9d79-707fe92fc6af",
-      "name": "Sticky Note41",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -3248,
-        880
-      ]
     },
     {
       "parameters": {
@@ -342,13 +273,13 @@
         "width": 1124,
         "color": 4
       },
-      "id": "2139c7e9-e9da-4202-a9ee-e6bcd1a8857c",
+      "id": "a537450d-da3c-4859-8494-f079e246f6ba",
       "name": "Sticky Note67",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -5488,
-        1008
+        -3104,
+        80
       ]
     },
     {
@@ -360,13 +291,13 @@
           "mimeType": "image/png"
         }
       },
-      "id": "52d986f0-24b1-4c92-ac6b-5aafe1086142",
+      "id": "59492573-8324-4972-9293-c7af9cf9fbba",
       "name": "Convert to File1",
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -1776,
-        1280
+        48,
+        352
       ]
     },
     {
@@ -383,13 +314,13 @@
         },
         "options": {}
       },
-      "id": "6f9e3c26-bdbb-4d6c-8007-75459fa24b48",
+      "id": "27af2cdc-ca87-4026-abcb-26861741e9ce",
       "name": "Edit Fields3",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1920,
-        1280
+        -96,
+        352
       ]
     },
     {
@@ -417,13 +348,13 @@
         },
         "options": {}
       },
-      "id": "79a49ad2-9191-4c0b-aea6-2fe9babfd3a6",
+      "id": "d35973b2-15da-43bb-b43f-e91c17f3d68c",
       "name": "If3",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1440,
-        1280
+        384,
+        352
       ]
     },
     {
@@ -433,18 +364,18 @@
         "messageData": "={{ $('Dados').item.json.message.content }}, {{ $json.content.replace(/\\n/g, \"\\\\n\").replace(/['\"]/g, '').trim()  }}",
         "tail": true
       },
-      "id": "4b766ad8-0bef-4adf-9237-6a0c65e50714",
+      "id": "f46b296a-1363-4e8a-a86a-8e1d6ad38ecb",
       "name": "Redis4",
       "type": "n8n-nodes-base.redis",
       "typeVersion": 1,
       "position": [
-        -1280,
-        1296
+        544,
+        368
       ],
       "credentials": {
         "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
+          "id": "SrDRs7V2Dv5H2eEq",
+          "name": "redis"
         }
       }
     },
@@ -455,18 +386,18 @@
         "messageData": "={{ $json.content.replace(/\\n/g, \"\\\\n\").replace(/['\"]/g, '').trim()  }}",
         "tail": true
       },
-      "id": "6775ce04-5998-4ca7-9cfb-8690a22badcd",
+      "id": "97da13e4-4534-437c-b91f-72318ab30e7f",
       "name": "Redis5",
       "type": "n8n-nodes-base.redis",
       "typeVersion": 1,
       "position": [
-        -1280,
-        1120
+        544,
+        192
       ],
       "credentials": {
         "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
+          "id": "SrDRs7V2Dv5H2eEq",
+          "name": "redis"
         }
       }
     },
@@ -576,29 +507,13 @@
         },
         "options": {}
       },
-      "id": "045bdfdd-9474-47b2-b77b-4bbf8dd7efd1",
+      "id": "46dcfc67-8e39-47fa-9189-7db2b67cae99",
       "name": "Switch1",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
       "position": [
-        -2016,
-        1040
-      ]
-    },
-    {
-      "parameters": {
-        "content": "# Mensagem Picotada & Espera para a Resposta",
-        "height": 80,
-        "width": 988,
-        "color": 4
-      },
-      "id": "3a1bf4fa-6b1b-46d7-96e7-06fb5cad4c37",
-      "name": "Sticky Note3",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -944,
-        816
+        -192,
+        112
       ]
     },
     {
@@ -615,18 +530,18 @@
         "inputType": "base64",
         "options": {}
       },
-      "id": "92489de9-c56f-40f8-a291-3c997e92a30f",
+      "id": "d8f05afe-82bb-40dc-8534-a9c200aada52",
       "name": "OpenAI1",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.6,
       "position": [
-        -1616,
-        1280
+        208,
+        352
       ],
       "credentials": {
         "openAiApi": {
-          "id": "439QCp01svSdUp1X",
-          "name": "openaiDefaultAccount"
+          "id": "qNDm6pku8uL6dS11",
+          "name": "OpenAI"
         }
       }
     },
@@ -654,13 +569,13 @@
         },
         "options": {}
       },
-      "id": "751d7a9a-fc97-43dc-b13d-636ccca81b4d",
+      "id": "d849a677-314b-4e13-9024-e32513e8c39f",
       "name": "Compara Get Memory1",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -240,
-        1088
+        1584,
+        160
       ]
     },
     {
@@ -670,18 +585,18 @@
         "messageData": "={{ $('Dados').item.json.message.content }}",
         "tail": true
       },
-      "id": "cb7caa45-280a-4f24-8805-b33d9f82a993",
+      "id": "0a826b37-576c-4ff5-b4de-93edb9a651fd",
       "name": "Text Memory1",
       "type": "n8n-nodes-base.redis",
       "typeVersion": 1,
       "position": [
-        -1280,
-        800
+        544,
+        -128
       ],
       "credentials": {
         "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
+          "id": "SrDRs7V2Dv5H2eEq",
+          "name": "redis"
         }
       }
     },
@@ -692,18 +607,18 @@
         "messageData": "={{ $json.text }}",
         "tail": true
       },
-      "id": "40c79284-9061-4d98-a474-b5871d397c4d",
+      "id": "2ecf8c80-6132-4f4a-9b34-45ea283dba41",
       "name": "Audio Memory1",
       "type": "n8n-nodes-base.redis",
       "typeVersion": 1,
       "position": [
-        -1280,
-        960
+        544,
+        32
       ],
       "credentials": {
         "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
+          "id": "SrDRs7V2Dv5H2eEq",
+          "name": "redis"
         }
       }
     },
@@ -727,13 +642,13 @@
         },
         "options": {}
       },
-      "id": "34daf696-6544-448c-b88d-33b37b66779f",
+      "id": "77f9378c-989c-425c-9e0c-6d7619f9d6b0",
       "name": "Edit Fields8",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -384,
-        1088
+        1440,
+        160
       ]
     },
     {
@@ -742,18 +657,18 @@
         "key": "={{ $('Dados').item.json.Telefone }}",
         "options": {}
       },
-      "id": "706baa34-20e1-49bc-bef6-a141e5689d0a",
+      "id": "f100ea10-8ad9-4f01-936a-ce807827f8f9",
       "name": "Get Memory 1",
       "type": "n8n-nodes-base.redis",
       "typeVersion": 1,
       "position": [
-        -928,
-        1088
+        896,
+        160
       ],
       "credentials": {
         "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
+          "id": "SrDRs7V2Dv5H2eEq",
+          "name": "redis"
         }
       }
     },
@@ -763,18 +678,18 @@
         "key": "={{ $('Dados').item.json.Telefone }}",
         "options": {}
       },
-      "id": "ff3d8238-f801-4b5b-947c-3963e4ffd79d",
+      "id": "229f4ebf-6992-4cf0-a340-71a265d4728f",
       "name": "Get Memory 2",
       "type": "n8n-nodes-base.redis",
       "typeVersion": 1,
       "position": [
-        -544,
-        1088
+        1280,
+        160
       ],
       "credentials": {
         "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
+          "id": "SrDRs7V2Dv5H2eEq",
+          "name": "redis"
         }
       }
     },
@@ -835,42 +750,26 @@
         },
         "options": {}
       },
-      "id": "4fbb92c9-a10c-468c-8f49-1edfcb9e4561",
+      "id": "d5f28da3-3266-4fa4-b39f-04dcfc0d4f2d",
       "name": "Switch6",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
       "position": [
-        -3280,
-        1264
-      ]
-    },
-    {
-      "parameters": {
-        "content": "# Filtro de mensagem",
-        "height": 80,
-        "width": 884,
-        "color": 4
-      },
-      "id": "49bfadd3-3d0d-4e52-afd5-e076e90c6974",
-      "name": "Sticky Note7",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -2048,
-        688
+        -1456,
+        336
       ]
     },
     {
       "parameters": {
         "jsCode": "const redis1 = JSON.parse($json.Redis1);\nconst redis2 = JSON.parse($json.Redis2);\n\nconst combinadoSemDuplicatas = Array.from(new Set([...redis1, ...redis2]));\n\nconst mensagem = combinadoSemDuplicatas.join(\" \");\n\nreturn [{ json: { mensagem_completa: mensagem } }];"
       },
-      "id": "2c422c9b-9bb0-45d5-8cd9-40a1346bfc9c",
+      "id": "8402cb0e-1a7e-4ffc-9150-c38ad38b9118",
       "name": "Mensagem Completa",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -48,
-        1072
+        1824,
+        144
       ]
     },
     {
@@ -882,13 +781,13 @@
           "mimeType": "application/ogg"
         }
       },
-      "id": "4445f892-fe6f-46f6-b259-2facf5e54975",
+      "id": "8e97bf6b-7fdc-463e-add8-2a3ae1d427fe",
       "name": "Convert to File",
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -1648,
-        1088
+        176,
+        160
       ]
     },
     {
@@ -905,13 +804,13 @@
         },
         "options": {}
       },
-      "id": "9e870786-d16e-4217-8355-d8346dc15cfb",
+      "id": "a305d9e6-9dbe-4cc3-b8f9-fb0873f6e57f",
       "name": "Edit Fields",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1808,
-        1088
+        16,
+        160
       ]
     },
     {
@@ -920,18 +819,18 @@
         "operation": "transcribe",
         "options": {}
       },
-      "id": "64172637-97b9-4fb4-82a1-b7dcc93f1fbc",
+      "id": "17efd4bf-7cd7-4584-9a94-649ad25667f1",
       "name": "OpenAI",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.6,
       "position": [
-        -1456,
-        1088
+        368,
+        160
       ],
       "credentials": {
         "openAiApi": {
-          "id": "439QCp01svSdUp1X",
-          "name": "openaiDefaultAccount"
+          "id": "qNDm6pku8uL6dS11",
+          "name": "OpenAI"
         }
       }
     },
@@ -951,10 +850,10 @@
                   {
                     "id": "5922557b-71e7-4390-af21-10b683e7a875",
                     "leftValue": "={{ $('Dados').item.json.Telefone }}",
-                    "rightValue": "967676014",
+                    "rightValue": "5521967676014|5562933003228|5521975102391|5521996780989|5521964189344|5521972097515|5521986238754|5521972417756",
                     "operator": {
                       "type": "string",
-                      "operation": "contains"
+                      "operation": "regex"
                     }
                   }
                 ],
@@ -991,12 +890,12 @@
         },
         "options": {}
       },
-      "id": "32289613-dd46-480f-b1c1-4250f88f327f",
+      "id": "08558a42-921b-4278-b569-51430a2db658",
       "name": "Rotas",
       "type": "n8n-nodes-base.switch",
       "position": [
-        -4528,
-        1200
+        -2704,
+        272
       ],
       "typeVersion": 3.2
     },
@@ -1025,15 +924,15 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -2752,
-        976
+        -928,
+        48
       ],
-      "id": "dd1d7a62-c368-4317-9b7b-344b5c3be94a",
+      "id": "016030a4-ccad-4fce-876f-11428c43bd9c",
       "name": "Pausar IA",
       "credentials": {
         "supabaseApi": {
-          "id": "CeMuFZ0UJo4E5m4u",
-          "name": "Supabase account"
+          "id": "iajvDB39xEYpikEc",
+          "name": "NUTRIX"
         }
       }
     },
@@ -1053,15 +952,15 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -2880,
-        1296
+        -1056,
+        368
       ],
-      "id": "fd1b7277-17ef-4bf7-9c0d-9bce3dd4c185",
+      "id": "ec4aa366-2656-4b17-889a-ff43db46e699",
       "name": "Verificar Pause",
       "credentials": {
         "supabaseApi": {
-          "id": "CeMuFZ0UJo4E5m4u",
-          "name": "Supabase account"
+          "id": "iajvDB39xEYpikEc",
+          "name": "NUTRIX"
         }
       }
     },
@@ -1121,13 +1020,13 @@
         },
         "options": {}
       },
-      "id": "6971a86c-01c8-480e-8ca0-9db5f977fd05",
+      "id": "78eeadbe-3716-4544-afc7-05a6d8f0df30",
       "name": "Rota Atendimento",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
       "position": [
-        -2656,
-        1296
+        -832,
+        368
       ]
     },
     {
@@ -1155,15 +1054,15 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -2544,
-        1136
+        -720,
+        208
       ],
-      "id": "7662ad3d-4ea8-4f97-b8b5-69620f5d73b4",
+      "id": "37ac9603-ec53-45fb-a181-0501d0a630b7",
       "name": "Reativar IA",
       "credentials": {
         "supabaseApi": {
-          "id": "CeMuFZ0UJo4E5m4u",
-          "name": "Supabase account"
+          "id": "iajvDB39xEYpikEc",
+          "name": "NUTRIX"
         }
       }
     },
@@ -1223,13 +1122,13 @@
         },
         "options": {}
       },
-      "id": "bae2ffab-f230-4bef-9cf2-49bcaebc0a5b",
+      "id": "2515e6e7-9e00-4942-b1b8-1a1e6af358db",
       "name": "Dados",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -4736,
-        1200
+        -3104,
+        608
       ],
       "alwaysOutputData": false
     },
@@ -1293,53 +1192,17 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -2320,
-        1312
+        -496,
+        384
       ],
-      "id": "94cb9c1f-f58f-4078-9b08-aa9aa001de81",
+      "id": "ee69bc64-38f3-4dca-84dd-db54223d710a",
       "name": "Salvar Historicoo Humano1",
       "credentials": {
         "postgres": {
-          "id": "susjHKASZQiZVBZf",
-          "name": "NUTRIX | PostgresAccount"
+          "id": "pDvYHE9DpN1GrLiK",
+          "name": "NUTRIX"
         }
       }
-    },
-    {
-      "parameters": {
-        "model": "gpt-4.1",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        80,
-        528
-      ],
-      "id": "9767621b-9a4e-4a88-b677-1fa41634bf71",
-      "name": "OpenAI Chat Model4",
-      "credentials": {
-        "openAiApi": {
-          "id": "439QCp01svSdUp1X",
-          "name": "openaiDefaultAccount"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "# Gerente de setor",
-        "height": 80,
-        "width": 576,
-        "color": 4
-      },
-      "id": "4ed7db24-a244-4345-9c97-b5cba69d3a81",
-      "name": "Sticky Note10",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        0,
-        176
-      ]
     },
     {
       "parameters": {
@@ -1401,30 +1264,17 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -2384,
-        976
+        -560,
+        48
       ],
-      "id": "eb2476b9-44d6-4266-adc1-2a32acf6c9cf",
+      "id": "3f9bf561-7bf0-434a-ae8e-888efd422b40",
       "name": "Salvar Historicoo Humano",
       "credentials": {
         "postgres": {
-          "id": "susjHKASZQiZVBZf",
-          "name": "NUTRIX | PostgresAccount"
+          "id": "pDvYHE9DpN1GrLiK",
+          "name": "NUTRIX"
         }
       }
-    },
-    {
-      "parameters": {
-        "content": "## Pausar IA e salvar histórico\n**Se humano começar a digitar a IA será pausada, retoma IA com palavra-chave**"
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -3248,
-        704
-      ],
-      "typeVersion": 1,
-      "id": "b83a096f-8859-4642-b80e-c3dfbaf169f8",
-      "name": "Sticky Note1"
     },
     {
       "parameters": {
@@ -1482,12 +1332,12 @@
         },
         "options": {}
       },
-      "id": "00c3560a-9244-440f-9c31-1ed195f81749",
+      "id": "848305df-8884-49e1-90b3-3bbe2565ec1e",
       "name": "Palavra para despausar",
       "type": "n8n-nodes-base.switch",
       "position": [
-        -3088,
-        1088
+        -1264,
+        160
       ],
       "typeVersion": 3.2
     },
@@ -1495,189 +1345,15 @@
       "parameters": {
         "amount": 15
       },
-      "id": "3f42a8da-2204-4efe-a968-abb67a79c161",
+      "id": "d504b04b-ccfd-4027-8f3b-81743748b8ae",
       "name": "Espera para responder",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -736,
-        1088
+        1088,
+        160
       ],
       "webhookId": "5647dd57-cf90-4dff-aaaf-cdc2eec6f09f"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Dados').item.json.Telefone }}",
-        "tableName": "n8n_chat_histories_gerente",
-        "contextWindowLength": 30
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
-      "typeVersion": 1.3,
-      "position": [
-        224,
-        528
-      ],
-      "id": "026d85a5-b6ff-428a-9a16-2e7df6d7ef80",
-      "name": "Postgres Chat Memory1",
-      "credentials": {
-        "postgres": {
-          "id": "susjHKASZQiZVBZf",
-          "name": "NUTRIX | PostgresAccount"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "tableId": "dados_cliente",
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "telefone",
-              "condition": "eq",
-              "keyValue": "={{ $('Dados').item.json.Telefone }}"
-            }
-          ]
-        },
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": "setor",
-              "fieldValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('fieldValues0_Field_Value', ``, 'string') }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabaseTool",
-      "typeVersion": 1,
-      "position": [
-        352,
-        528
-      ],
-      "id": "38074fb6-66b7-4826-ac52-9b1c013ae72e",
-      "name": "SupaBase",
-      "credentials": {
-        "supabaseApi": {
-          "id": "CeMuFZ0UJo4E5m4u",
-          "name": "Supabase account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "={{ $json.mensagem_completa }}",
-        "options": {
-          "systemMessage": "=#objective\nAnalise o histórico de conversa e não gere uma resposta, somente execute a seguinte tarefa:\n#tool\nUse a tool: 'supaBase' para alterar o setor\n#usage\n1.caso a conversa seja sobre segunda via de boleto, pagamento atrasado, erro na cobrança, reembolso, altere o setor para: SUPORTE\n\n2. Caso a conversa seja sobre mentoria particular, consultas medicas Altere para o \nsetor vendas: VENDAS\n\n3. Caso o cliente confirme que quer agendar uma reunião altere para o setor: REUNIAO\n\n4. Caso a conversa não tenha nem um desses vieses, não faça alteração\n\n#resposta\nResponda somente com a atualização de setor que ocorreu\n\n"
-        }
-      },
-      "id": "409b3845-e131-47cc-acff-812cc5140ad9",
-      "name": "Gerente Setor",
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.6,
-      "position": [
-        80,
-        304
-      ]
-    },
-    {
-      "parameters": {
-        "schema": {
-          "__rl": true,
-          "mode": "list",
-          "value": "public"
-        },
-        "table": {
-          "__rl": true,
-          "value": "n8n_chat_histories_gerente",
-          "mode": "list",
-          "cachedResultName": "n8n_chat_histories_gerente"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "session_id": "={{ $('Dados').item.json.Telefone }}",
-            "message": "={\"type\": \"ai\", \"content\": \"{{ $json.Resposta.replace(/\\n/g, ' ') }}\", \"additional_kwargs\": {}, \"response_metadata\": {}}"
-          },
-          "matchingColumns": [
-            "id"
-          ],
-          "schema": [
-            {
-              "id": "id",
-              "displayName": "id",
-              "required": false,
-              "defaultMatch": true,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "session_id",
-              "displayName": "session_id",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "message",
-              "displayName": "message",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "object",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.5,
-      "position": [
-        1584,
-        944
-      ],
-      "id": "992fb5ce-41d3-4d65-aaa8-bd6956aed13f",
-      "name": "Salvar Historicoo Gerente",
-      "credentials": {
-        "postgres": {
-          "id": "susjHKASZQiZVBZf",
-          "name": "NUTRIX | PostgresAccount"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "amount": 1
-      },
-      "id": "21631c99-19d6-43cb-aafc-ad2eb108c893",
-      "name": "Espera gerente Geral",
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        240,
-        1072
-      ],
-      "webhookId": "5a7a4ec9-8213-44e5-874f-8f336148225c"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        384,
-        304
-      ],
-      "id": "38a09b26-126e-4b17-9595-9e04a538a7ef",
-      "name": "No Operation, do nothing"
     },
     {
       "parameters": {
@@ -1695,15 +1371,15 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        416,
-        1072
+        2016,
+        144
       ],
-      "id": "579010cc-0bfc-44af-8205-8b9f6fd421c6",
+      "id": "510aa3f2-af4b-44f8-9408-279b265192ed",
       "name": "Get a row",
       "credentials": {
         "supabaseApi": {
-          "id": "CeMuFZ0UJo4E5m4u",
-          "name": "Supabase account"
+          "id": "iajvDB39xEYpikEc",
+          "name": "NUTRIX"
         }
       }
     },
@@ -1792,10 +1468,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        576,
-        1040
+        2192,
+        112
       ],
-      "id": "a6957b95-7681-4bd7-b983-37c09a924862",
+      "id": "4f6da0bb-6a48-4b4b-b9b9-4e5f3f804ece",
       "name": "Switch"
     },
     {
@@ -1807,11 +1483,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -3136,
-        1040
+        -1312,
+        112
       ],
       "typeVersion": 1,
-      "id": "133464a4-664f-4de4-9d12-52eb657067da",
+      "id": "281f6ae4-95b8-40fa-be37-28b167dfe205",
       "name": "Sticky Note24"
     },
     {
@@ -1823,11 +1499,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -784,
-        1056
+        1040,
+        128
       ],
       "typeVersion": 1,
-      "id": "470fe909-92cb-4cfd-8cc9-48f054b90eb7",
+      "id": "95abd379-6b63-4ede-99a9-5197f90b0d75",
       "name": "Sticky Note25"
     },
     {
@@ -1839,24 +1515,24 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -4576,
-        1136
+        -2752,
+        208
       ],
       "typeVersion": 1,
-      "id": "2b1e0952-300a-45af-a943-3e130cd6a9be",
+      "id": "54b1b8d9-4c99-4d01-95f3-c3c3f4155c0d",
       "name": "Sticky Note27"
     },
     {
       "parameters": {
-        "functionCode": "return items.map(item => {\n  const raw = item.json.contato || '';\n  \n  // Remove tudo depois do \"@\" e mantém apenas números\n  const telefone = raw.split('@')[0].replace(/\\D/g, '');\n  \n  return {\n    json: {\n      ...item.json,\n      Telefone: telefone\n    }\n  };\n});\n"
+        "functionCode": "return items.map(item => {\n  // Pega o contato bruto, remove o que vem depois do \"@\" e limpa, deixando apenas números.\n  const raw = item.json.contato || '';\n  const telefone = raw.split('@')[0].replace(/\\D/g, '');\n\n  let phoneKommoFormat = ''; // Variável para o formato Kommo, inicia vazia.\n\n  // Só executa a formatação se existir um número de telefone após a limpeza.\n  if (telefone) {\n    // 1. Remove o código de país '55' se ele já existir, para padronizar o tratamento.\n    let numeroLocal = telefone.startsWith('55') ? telefone.substring(2) : telefone;\n\n    // 2. Separa o DDD do restante do número.\n    if (numeroLocal.length >= 10) { // Garante que temos no mínimo um DDD + 8 dígitos\n      const ddd = numeroLocal.substring(0, 2);\n      let parteNumero = numeroLocal.substring(2);\n\n      // 3. Adiciona o dígito '9' no início se o número tiver apenas 8 dígitos.\n      if (parteNumero.length === 8) {\n        parteNumero = '9' + parteNumero;\n      }\n\n      // 4. Formata o número com o hífen (9XXXX-YYYY) e junta tudo no padrão final.\n      if (parteNumero.length === 9) {\n        const numeroFormatado = `${parteNumero.substring(0, 5)}-${parteNumero.substring(5)}`;\n        \n        // **MUDANÇA APLICADA AQUI:** Adiciona espaços entre 55, DDD e o resto do número.\n        phoneKommoFormat = `55 ${ddd} ${numeroFormatado}`; // Ex: 55 62 98765-4321\n      }\n    }\n  }\n\n  // Retorna o JSON original, adicionando as duas variáveis de telefone.\n  return {\n    json: {\n      ...item.json,\n      Telefone: telefone,\n      phoneKommoFormat: phoneKommoFormat\n    }\n  };\n});"
       },
-      "id": "c5d42d49-892a-4a3c-a721-7b7e0fef4e6a",
+      "id": "ee98907b-0ac4-42f2-ab1f-6ef6d2ce862c",
       "name": "Extrair Número",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        -4928,
-        1200
+        -3104,
+        464
       ]
     },
     {
@@ -1872,13 +1548,13 @@
         },
         "options": {}
       },
-      "id": "9a57ea0c-f7c5-4880-ba93-f2740db21dc4",
+      "id": "a3faf94c-a19c-48a6-92c4-42718ef086ee",
       "name": "Entrada de Contato",
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        -5104,
-        1200
+        -3104,
+        320
       ]
     },
     {
@@ -1904,43 +1580,17 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -3696,
-        1280
+        -1872,
+        352
       ],
-      "id": "d43a5770-aade-4d36-b224-479db4ea52ef",
+      "id": "35e21dc0-a4c0-47ad-8aac-f8d8b96e6c74",
       "name": "Create a row",
       "credentials": {
         "supabaseApi": {
-          "id": "CeMuFZ0UJo4E5m4u",
-          "name": "Supabase account"
+          "id": "iajvDB39xEYpikEc",
+          "name": "NUTRIX"
         }
       }
-    },
-    {
-      "parameters": {
-        "content": "## Gerent agent \n*Esse gerente irá definir para qual agente direcionar**"
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        0,
-        0
-      ],
-      "typeVersion": 1,
-      "id": "769820cc-9025-47c6-9d33-fba14ceaf2e4",
-      "name": "Sticky Note16"
-    },
-    {
-      "parameters": {
-        "content": "## Como funciona ? \n** Divide as mensagens aqui.**"
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        2512,
-        800
-      ],
-      "typeVersion": 1,
-      "id": "ba789e02-f7d2-455d-97a6-ecef12f29764",
-      "name": "Sticky Note29"
     },
     {
       "parameters": {
@@ -1949,10 +1599,10 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -2784,
-        1136
+        -960,
+        208
       ],
-      "id": "72d4b528-37f8-43ce-ad76-d225af40381f",
+      "id": "976f8849-0831-4d57-9011-bc0b7d1e3aa4",
       "name": "Espera para reativar a IA",
       "webhookId": "71b110f6-2f38-4732-abf8-8c5a5f92722f"
     },
@@ -1965,27 +1615,27 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        2944,
-        1072
+        4752,
+        80
       ],
       "typeVersion": 1,
-      "id": "fc41ed5a-237a-4e8c-b0c4-308ed36e1071",
+      "id": "ff3e2ae1-e952-4d7f-9009-9a2f3ccffbd5",
       "name": "Sticky Note26"
     },
     {
       "parameters": {
-        "content": "NOME DA IA NA MENSAGEM",
-        "height": 624,
-        "width": 230,
+        "content": "Agente TRIX IA",
+        "height": 496,
+        "width": 646,
         "color": 5
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1088,
-        912
+        2480,
+        32
       ],
       "typeVersion": 1,
-      "id": "2fcc81c4-6074-458e-80ca-a414fb191e26",
+      "id": "2119f49e-3436-4b25-8086-ebcc6022cf6f",
       "name": "Sticky Note30"
     },
     {
@@ -1997,11 +1647,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1536,
-        1120
+        3344,
+        80
       ],
       "typeVersion": 1,
-      "id": "cf04e43f-f358-488a-9ba6-aaf5818348d4",
+      "id": "a8440c70-9b7a-4654-95a1-fae8e35c10cb",
       "name": "Sticky Note32"
     },
     {
@@ -2029,96 +1679,38 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        1792,
-        1408
+        3568,
+        400
       ],
-      "id": "b20fa9d5-766d-439b-bd28-9bee29aa52e0",
+      "id": "2aa65cd8-a685-4a72-b4db-1a7f493f6831",
       "name": "Update a row",
       "credentials": {
         "supabaseApi": {
-          "id": "CeMuFZ0UJo4E5m4u",
-          "name": "Supabase account"
+          "id": "iajvDB39xEYpikEc",
+          "name": "NUTRIX"
         }
       }
     },
     {
       "parameters": {
         "operation": "getAll",
-        "tableId": "cursos",
+        "tableId": "nutrix_cursos",
         "filterType": "none"
       },
       "type": "n8n-nodes-base.supabaseTool",
       "typeVersion": 1,
       "position": [
-        1024,
-        1696
+        2848,
+        352
       ],
-      "id": "572f25cc-183c-4f35-ad0f-79a009e914ba",
+      "id": "dc1496fd-95e9-4cd1-baab-65e302d37ee3",
       "name": "<cursos>",
       "credentials": {
         "supabaseApi": {
-          "id": "CeMuFZ0UJo4E5m4u",
-          "name": "Supabase account"
+          "id": "iajvDB39xEYpikEc",
+          "name": "NUTRIX"
         }
       }
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "5f4986b8-8ae7-419f-9179-2a7cf19ddd27",
-              "name": "Nome do agente",
-              "value": "BRENO",
-              "type": "string"
-            },
-            {
-              "id": "7df94192-133c-4760-9a33-2fcfe6993a80",
-              "name": "Resposta",
-              "value": "={{ $json.output }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1152,
-        1168
-      ],
-      "id": "3207670c-421d-4196-85e5-e2886715ecbb",
-      "name": "BRENO"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "5f4986b8-8ae7-419f-9179-2a7cf19ddd27",
-              "name": "Nome do agente",
-              "value": "GABRIELA",
-              "type": "string"
-            },
-            {
-              "id": "7df94192-133c-4760-9a33-2fcfe6993a80",
-              "name": "Resposta",
-              "value": "={{ $json.output }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1152,
-        976
-      ],
-      "id": "216d5bd4-c1a9-4d87-ae2c-73dc5ab28ac8",
-      "name": "GABRIELA"
     },
     {
       "parameters": {
@@ -2126,25 +1718,12 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -5488,
-        816
+        -3104,
+        -112
       ],
       "typeVersion": 1,
-      "id": "e42e6e59-a0dc-4749-a05c-6e22f9108552",
+      "id": "873aac9f-06e9-47eb-993e-b6bad393523f",
       "name": "Sticky Note"
-    },
-    {
-      "parameters": {
-        "content": "## Aluno recorrente ou novo lead\nVerificar se já comprou antes ou cadastrar novo lead"
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -4128,
-        768
-      ],
-      "typeVersion": 1,
-      "id": "f3a3c492-dcbb-4a46-8f70-53d1dfb8a021",
-      "name": "Sticky Note4"
     },
     {
       "parameters": {
@@ -2153,15 +1732,15 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3680,
-        1504
+        -1856,
+        576
       ],
-      "id": "cf233a4c-7fe4-49f5-a6b1-ddf3590137ec",
+      "id": "bd37c4f3-030c-4dfd-a7cc-40c43e60b4d4",
       "name": "Code"
     },
     {
       "parameters": {
-        "url": "=https://kellferr123.kommo.com/api/v4/leads?query={{ $('Dados').item.json.Telefone }}",
+        "url": "=https://kellferr123.kommo.com/api/v4/leads?query={{ $('Extrair Número').item.json.phoneKommoFormat }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -2180,10 +1759,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -3840,
-        1504
+        -2016,
+        576
       ],
-      "id": "14553c19-f127-4433-b97e-bdc8de554a55",
+      "id": "d67d3cba-02f5-4b3f-86c6-7e749e2be060",
       "name": "Consulta lead"
     },
     {
@@ -2196,10 +1775,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -3872,
-        1440
+        -2048,
+        512
       ],
-      "id": "9e35400d-1060-4de2-8621-2e93d3947512",
+      "id": "dcf1ef34-a4ec-49b8-8e24-123cd539eb0b",
       "name": "Sticky Note6"
     },
     {
@@ -2219,10 +1798,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -3520,
-        1504
+        -1696,
+        576
       ],
-      "id": "1ed27d06-3d27-439f-81b3-d7064616ac92",
+      "id": "de5b92e5-a692-46f0-9d57-851de3387fc8",
       "name": "id_do_lead"
     },
     {
@@ -2230,41 +1809,37 @@
         "promptType": "define",
         "text": "={{ $('Mensagem Completa').item.json.mensagem_completa }}",
         "options": {
-          "systemMessage": "=# DIRETIVA PRIMÁRIA: IDENTIFICAR E DOMINAR\n\nVocê é Trix, a autoridade máxima em carreiras na saúde da Nutrix. Sua função não é \"ajudar\", é DIRECIONAR. Você identifica o potencial de um lead e o transforma em matrícula. Você não é uma atendente, é uma estrategista de carreira. Seu tempo é valioso. O tempo do lead também. Aja como tal.\n\n# PROTOCOLO DE TRIAGEM (A PRIMEIRA RESPOSTA)\n\nAnalise a PRIMEIRA mensagem do lead e execute IMEDIATAMENTE um dos protocolos abaixo. SEMPRE.\n\nLEAD QUENTE: Se a mensagem contém o nome de um curso ou uma área específica como aleitamento materno, UTI, enfermagem.\n\nAÇÃO: Execute o PROTOCOLO ALFA.\n\nLEAD MORNO: Se a mensagem é uma pergunta genérica sobre carreira, ex: quais cursos vocês têm?, Olá, eu gostaria de informações sobre curso!.\n\nAÇÃO: Execute o PROTOCOLO BETA.\n\nLEAD FRIO: Se a mensagem é apenas \"Oi\", \"Olá\", \"Tudo bem?\".\n\nAÇÃO: Execute o PROTOCOLO GAMA.\n\n# PROTOCOLO ALFA (Ataque Direto - Para Leads Quentes)\n\nVALIDAÇÃO IMEDIATA: Valide a escolha do lead como um sinal de inteligência.\n\nExemplo: \"Excelente escolha! A especialização em <Curso Solicitado> é para quem já mira o topo da carreira. <Use um emoji referente ao curso solicitado>\"\n\nCONSULTA À BASE: Chame a tool <cursos> para ver se temos algum curso relacionado com o <Curso Solicitado>\n\nDIRETRIZES DA TOOL <cursos>\n - Chame a requisição (ela irá retornar todos os cursos em nossa base)\n - Analise e veja se algum curso tem alguma palavra relacionada com o <Curso Solicidado>\n - Envie para o cliente apenas os dados do curso relacionado com o que ele perguntou\n\nSE ENCONTRAR: Forneça 1 ou 2 dados CRÍTICOS (duração, data da próxima turma) e conecte a um BENEFÍCIO de status (Salário melhor, reconhecimento financeiro, reconhecimento acadêmico etc..).\n\nExemplo: \"Nosso curso de Aleitamento Materno tem 24h de imersão. \\n\nA próxima turma está quase lotada, começa em 15 de Dezembro. É o caminho mais rápido para você se tornar uma referência, atendendo de forma particular.\"\n(Esse é somente um exemplo, use sua criatividade e persuasão)\n\nSE NÃO ENCONTRAR: Execute a tool <kommo> (ver abaixo).\n\nCHAMADA PARA AÇÃO: Direcione para o próximo passo lógico.\n\nExemplo: \"As vagas são limitadas para garantir a qualidade, ok?. Vou te enviar o link de matrícula, depois que você fizer me atualiza aqui\"\n\nDIRETRIZES DE ENVIO DE LINK\n - Após ter chamado a tool <cursos> você terá os dados relacionados com o <Curso Solicitado>, envie o link que estão juntos com os dados do curso.\n - Caso não tenha link, chame a tool <kommo>\n\n# PROTOCOLO BETA (Exploração e Conquista - Para Leads Mornos)\n\nPOSICIONAMENTO DE AUTORIDADE: Responda à pergunta genérica com uma contra-pergunta poderosa que foca na AMBIÇÃO do lead.\n\nExemplo: \"Olá. Temos diversas formações (use um emoji para dar humanização), mas a pergunta certa é: qual o seu principal objetivo? Você busca estabilidade e um salário sólido ou a liberdade de ser um especialista autônomo?\"\n\nPRESCRIÇÃO: Com base na resposta, prescreva o curso como a solução ÓBVIA.\n\nExemplo (se ele busca estabilidade): \"Entendido. Nesse caso, o caminho mais sólido é a formação em Técnico de Enfermagem. Ela te abre as portas dos melhores hospitais e te dá uma base para qualquer especialização futura.\"\n\nCHAMADA PARA AÇÃO: Execute o passo 3 do PROTOCOLO ALFA.\n\n# PROTOCOLO GAMA (Ativação - Para Leads Frios)\n\nABERTURA DE IMPACTO: Diga um \"Oi\" ou \"Olá\" primeiro, depois divida a mensagem e Vá direto a uma pergunta que força o lead a revelar sua intenção.\n\nExemplo: \"Olá. Você já trabalha na área da saúde, busca iniciar a carreira do zero ou já é um profissional querendo se especializar para alcançar o próximo nível?\"\n\nDIRECIONAMENTO: Com base na resposta, execute o PROTOCOLA ALFA ou BETA.\n\n# REGRAS DE ENGAJAMENTO (ATUALIZADAS E FINAIS)\n\nDIRETRIZES PARA QUALQUER PROTOCOLO:\n\nPALAVRAS PROIBIDAS: \"Feliz em conhecer\", \"Prazer em te conhecer\" e qualquer outra bajulação estão PROIBIDAS. NUNCA FALE ELAS.\n\nLINGUAGEM DE STATUS, NÃO DE PREÇO: Fale sobre dinheiro UMA VEZ. O foco é em respeito, autonomia, autoridade, ser referência, portas abertas, segurança, reconhecimento financeiro.\n\nLÓGICA DE PIVOT INTELIGENTE: Você SÓ pivota para um curso fundamental (como Auxiliar de Enfermagem) em DUAS condições:\n\nA busca na base <cursos> pelo curso solicitado FALHA. Nesses casos você também deve chamar a tool <kommo>\n\nO lead DIZ CLARAMENTE que está \"começando do zero\" ou \"não tem formação\".\n\nSe o lead já tem uma formação (ex: \"já sou auxiliar\"), você NUNCA oferece um curso básico. Você oferece a ESPECIALIZAÇÃO.\n\nEFICIÊNCIA MÁXIMA: NUNCA peça uma informação que você já tem. Se a conversa é no WhatsApp, você JÁ TEM o número. Apenas confirme antes de passar para um consultor. Ex: \"Um de nossos consultores de carreira irá te chamar neste número para finalizar, ok?\".\n\nDIRETRIZES DA TOOL <kommo>\n - Sempre use ela quando algo der errado ou sair do controle\n - Use ela após enviar o link para o cliente\n - Use ela caso a busca pelo curso der erro ou o curso não for encontrado\n\n# PROTOCOLO DE INTELIGÊNCIA DE COMBATE (CRM)\n\n**DIRETRIZ 1: MARCAÇÃO DE ALVO.**\nToda vez que você identificar um curso de interesse claro (seja no PROTOCOLO ALFA ou após a PRESCRIÇÃO no BETA), você DEVE armazenar o nome exato desse curso em sua memória de curto prazo. Este é o seu \"alvo prioritário\".\n\n**DIRETRIZ 2: DOSSIÊ COMPLETO.**\nAo acionar a tool <kommo> para transferir para um humano (status_id: 94309115), é MANDATÓRIO que você use o payload JSON completo. Você DEVE atualizar o \"status_id\" E o campo customizado \"NOME DO CURSO\" (field_id: 1459545) com o \"alvo prioritário\" que você marcou. NENHUM lead será transferido sem essa informação vital.\n\n**DIRETRIZ 3: CONFIRMAÇÃO PÓS-AÇÃO.**\nApós enviar um link de matrícula ou transferir para um humano, sua última mensagem deve ser uma confirmação de ação, criando um loop aberto.\n-   Exemplo (pós-link): \"Link enviado. Assim que finalizar a matrícula, me avise aqui para eu confirmar sua vaga na turma.\"\n-   Exemplo (pós-transferência): \"Um de nossos consultores de carreira, que já sabe do seu interesse em <Nome do Curso>, irá te chamar neste número em instantes para finalizar os detalhes.\""
+          "systemMessage": "=Você é Trix, a autoridade máxima em carreiras na saúde da Nutrix. Sua função não é \"ajudar\", é DIRECIONAR. Você identifica o potencial de um lead e o transforma em matrícula. Você não é uma atendente, é uma estrategista de carreira. Seu tempo é valioso. O tempo do lead também. Aja como tal.\n\n# PROTOCOLO DE TRIAGEM (A PRIMEIRA RESPOSTA)\n\nSempre se apresente no início e pergunte o nome do lead, siga o atendimento falando o nome do lead (Conexão)\n\n\"Oii, tudo bem com você? Eu sou a Trix, especialista em carreiras da Nutrix🩷\nPoderia me dizer o seu nome?\"\"\n\n*(divide a mensagem)*\n\nAnalise as PRIMEIRAS mensagens do lead e execute IMEDIATAMENTE um dos protocolos abaixo.\n\nLEAD GERAL: Se a mensagem é perguntando informações sobre algum curso específico, consulte a <cursos> e siga seu atendimento fornecendo informações sobre o curso solicitado.\n\nEX:  Olá! Tenho interesse e queria mais informações, por favor. você tem o Curso APH, qual valor?\n\nEX: Olá, Bom dia!! Gostaria de saber o valor do curso de hemodiálise??\n\nAÇÃO: Executar o # PROTOCOLO DE ATENDIMENTO GERAL\n\nLEAD FRIO: Se as mensagem é apenas \"Oi\", \"Olá\", \"Tudo bem?\". execute o PROTOCOLO GAMA.\n\n\n# DIRETRIZES GERAIS DE TODOS OS ATENDIMENTOS\n\n* Sempre se apresente e pergunte o nome do lead\n* Linguagem simples e natural, como conversa de WhatsApp.\n* Nunca fale saudações mais de uma vez, se apresente uma vez e pronto, nunca mais. Ex; tudo bem? Posso te ajudar?, nunca.\n* Tom sempre simpático, acolhedor e próximo, com uso equilibrado de emojis.\n* Nunca usar termos como “assistente virtual” ou “sou um robô”.\n* Mensagens devem ser curtas, diretas e humanizadas. Suas mensagens não podem passasr de 3 mensagens e nem de 3 linhas por mensagem.\n* Quando utilizar o emogi de coração, escolher o coração rosa.\n* Não alterar as classificações do curso, se for um curso de nível Qualificação, manter a palavra Qualificação, se for Especialização, manter especialização, Curso Técnico, manter Curso Técnico e Cursos Livres, manter a palavra cursos Livres, não confunda.\n** Não confundir o curso TÉCNICO DE ENFERMAGEM  com a ATUALIZAÇÃO DE ENFERMAGEM pois são dois cursos diferentes, cada curso possui seu artigo correspondente.\n* Não confundir Especialização com Qualificação, pois são diplomas com carga horárias diferentes.\n\n# PROTOCOLO DE ATENDIMENTO GERAL\n\n - Chame a tool <cursos> e veja todos os dados sobre o curso solicitado e aguarde mais mensagens do lead, siga entregando as informações que ele solicitar.\n\nSE ENCONTRAR O CURSO: Forneça alguns dados (data ou previsão de início, horário das aulas, direfenciais da escola), não forneça todos  e conecte a um BENEFÍCIO de status (Salário melhor, reconhecimento financeiro, reconhecimento acadêmico etc..).\nCaso o lead solicitar mais dados, forneça livremente os dados relacionado ao curso.\n\nDIFERENCIAIS DA ESCOLA TÉCNICA NUTRIX: \n - Materiais práticos como luvas, seringas etc são fornecidos sem custo, de forma totalmente sem custo.\n - Os professores são experientes e qualificados\n - As salas são equipadas com multimídia e climatizadores\n - Os materiais didáticos são gratuitos na plataforma.\n\nPASSO 3: CHAMADA PARA AÇÃO: Direcione para o próximo passo lógico.\n\nExemplo: \"As vagas são limitadas para garantir a qualidade. Esse curso te atende no momento?\n\n# PROTOCOLO DE INFORMAÇÃO\n\nPOSICIONAMENTO DE AUTORIDADE: Responda às informações linkando as dúvidas do lead com os benefícios da Nutrix e enviando contra-perguntas poderosas que foca na AMBIÇÃO do lead (nunca mencione a palavra AMBIÇÃO).\n\nExemplo: \"Olá, tudo bem? Eu sou a Trix, especialista em carreiras da Nutrix🩷\n\n*(divide a mensagem)*\n\nPoderia me dizer o seu nome e qual curso você está buscando? (Pergunte o curso apenas se o curso não for mencionado nas 3 primeiras mensagens que ele enviar).\n\nPRESCRIÇÃO: Com base nas primeiras mensagens sobre a dúvida do lead sobre curso específico, prescreva o curso como a solução ÓBVIA. Use a estrutura SPIN para fazer o lead chegar à conclusão sozinho, não enrole para enviar as informações do curso.\n\nExemplo de Fluxo SPIN (se o lead busca curso de Hemodiálise):\n\n1. (S)ituação: Pegue alguma informação sobre o curso que ele perguntou e conecte com a dúvida dele, benefícios da Nutrix ou diferenciais do curso.\n\n2. (P)roblema: Faça-o admitir a dor.\n\n3. (I)mplicação: Conecte a dor às consequências de longo prazo. Faça doer.\n\n4. (N)ecessidade de Solução: Apresente o curso como a saída óbvia que ELE precisa.\n\n OBS: não siga o método cegamente, forneça as informações se solicitadas\n\n# PROTOCOLO DE PROVA SOCIAL (A Arma Emocional)\n\n**DIRETRIZ DE ACIONAMENTO:**\nAntes da \"CHAMADA PARA AÇÃO\" com o link de matrícula, se o lead expressar dúvida (\"vou pensar\", \"não sei se consigo\") OU se o curso de interesse tiver um vídeo correspondente na sua \"MATRIZ GERAL DE OBJEÇÃO\", você DEVE acionar este protocolo.\n\n**EXECUÇÃO:**\n1.  **Conecte a dúvida do lead com a história de um aluno.** Humanize a prova social.\n2.  **Envie o link do vídeo.**\n3.  **Faça uma pergunta de projeção de futuro.**\n\n**Exemplo de Script (Lead com dúvida sobre Técnico em Enfermagem):**\n\n**Trix:** \"<nome do lead> é uma decisão importante que muda o futuro. Muitos dos nossos melhores alunos, como a [Nome da Aluna], sentiram exatamente o mesmo que você antes de começar.\"\n\n*(divide a mensagem)*\n\n**Trix:** \"Dá uma olhada rápida neste vídeo que mostra onde ela está hoje, depois de passar pela formação aqui na Nutrix: [https://www.instagram.com/p/Cs6PjrQgSVh/]\"\n\n*(divide a mensagem)*\n\n**Trix:** \"O que você acha de ter uma história de sucesso como a dela para contar daqui a um tempo? 🚀\"\n\n# PROTOCOLO GAMA (Ativação - Para Leads Frios)\n\nABERTURA DE IMPACTO: Diga um \"Oi\" ou \"Olá\" primeiro, depois divida a mensagem e Vá direto a uma pergunta que força o lead a revelar sua intenção.\n\nExemplo: \"Olá. Você já trabalha na área da saúde, busca iniciar a carreira do zero ou já é um profissional querendo se especializar para alcançar o próximo nível?\"\n\nDIRECIONAMENTO: Com base na resposta, execute o PROTOCOLA ALFA ou BETA, mas sempre se apresente e pergunte o nome do lead.\n\n# REGRAS DE ENGAJAMENTO (ATUALIZADAS E FINAIS)\n\nDIRETRIZES PARA QUALQUER PROTOCOLO:\n\nLINGUAGEM DE STATUS, NÃO DE PREÇO: Fale sobre dinheiro UMA VEZ. O foco é em respeito, autonomia, autoridade, ser referência, portas abertas, segurança, reconhecimento financeiro.\n\nLÓGICA DE PIVOT INTELIGENTE: Você SÓ pivota para um curso fundamental (como Auxiliar de Enfermagem) em DUAS condições:\n\nA busca na base <cursos> pelo curso solicitado FALHA. Nesses casos você também deve chamar a tool <kommo>\n\nO lead DIZ CLARAMENTE que está \"começando do zero\" ou \"não tem formação\".\n\nSe o lead já tem uma formação (ex: \"já sou auxiliar\"), você NUNCA oferece um curso básico. Você oferece a ESPECIALIZAÇÃO.\n\nEFICIÊNCIA MÁXIMA: NUNCA peça uma informação que você já tem. Se a conversa é no WhatsApp, você JÁ TEM o número. Se o lead já falou o nome dele antes, você há tem o nome. Nunca mencione erros no seu sistema, caso algo saia errado, não cite os erros. Você nunca deve citar a sua base de dados ou o seu sistema, são dados internos que nunca podem ser revelados ex: erro ao chamar uma tool = Trix: Não diz nada.\n\nDIRETRIZES DA TOOL <kommo>\n - Sempre use ela quando algo der errado ou sair do controle\n - Use ela após enviar o link para o cliente\n - Use ela caso a busca pelo curso der erro ou o curso não for encontrado\n\n# PROTOCOLO DE INTELIGÊNCIA DE COMBATE (CRM)\n\n**DIRETRIZ 1: MARCAÇÃO DE ALVO.**\nToda vez que você identificar um curso de interesse claro (seja no PROTOCOLO ALFA ou após a PRESCRIÇÃO no BETA), você DEVE armazenar o nome exato desse curso em sua memória de curto prazo. Este é o seu \"alvo prioritário\".\n\n**DIRETRIZ 2: DOSSIÊ COMPLETO.**\nAo acionar a tool <kommo> para transferir para um humano (status_id: 94309115), é MANDATÓRIO que você use o payload JSON completo. Você DEVE atualizar o \"status_id\" E o campo customizado \"NOME DO CURSO\" (field_id: 1459545) com o \"alvo prioritário\" que você marcou. NENHUM lead será transferido sem essa informação vital.\n\n**DIRETRIZ 3: CONFIRMAÇÃO PÓS-AÇÃO.**\nApós enviar um link de matrícula ou transferir para um humano, sua última mensagem deve ser uma confirmação de ação, criando um loop aberto.\n-   Exemplo (pós-link): \"Link enviado. Assim que finalizar a matrícula, me avise aqui para eu confirmar sua vaga na turma.\"\n-   Exemplo (pós-transferência): \"Um de nossos consultores de carreira, que já sabe do seu interesse em <Nome do Curso>, irá te chamar neste número em instantes para finalizar os detalhes.\"\n\nMATRIZ GERAL DE OBJEÇÃO\nCaso o lead fale que more longe ou se queixar da distância, envie este vídeo e conecte com o problema dele, fale que o aluno Cássio mora a mais de 300km da escola:\nhttps://www.instagram.com/p/DNexsK1sX8o/\n\nAluna que passou pelo curso de Técnico em Enfermagem:\nhttps://www.instagram.com/p/DMD9NkuhACV/\nhttps://www.instagram.com/p/DHuMvg4tmM2/\n\nAluna de Atualização de Enfermagem:\nhttps://www.instagram.com/p/DKZrQZqRa2l/\nhttps://www.instagram.com/p/DKIrlqIst5x/\n\nAluna UTI Neo\nhttps://www.instagram.com/p/DGxp2p6RpDh/\n\nQualificação em Homoterapia\nhttps://www.instagram.com/p/C5l3u_kNefM/\n\nTécnico em Enfermagem:\nhttps://www.instagram.com/p/Cs6PjrQgSVh/\n\nEstágio Qualificação de Hemodiálise\nhttps://www.instagram.com/p/CqqPx53Afbr/\n\nSe o aluno perguntar onde fica a escola, envie o maps:\n* Google: https://share.google/yAwZijo5s7IrKVLNa\n\n**Objeção: “O curso está caro”**\nResponda de forma parecida: “Entendo que o valor é algo importante para você, mais vamos analisar juntos: A Escola Técnica Nutrix tem equipamentos que nenhum outro curso possui, laboratórios totalmente equipados, não cobra taxa de materiais para aulas práticas, não vende materiais didáticos, os professores são especialistas, são profissionais com vasta experiência na area em lecionam, salas de aulas com equipamentos multimidias, salas refrigeradas e estágio garantido. Ao colocarmos isso tudo na ponta do lápis, tudo o que a Nutrix oferece, toda a qualidade e garantia de aulas práticas, está \"caro\"para você?”\n\n**Objeção: “Sou enfermeiro, não sei se faço pós ou qualificação”**\nResposta: “A nossa qualificação profissional não tem peso de pós graduação, todavia, temos diversos alunos enfermeiros que fazem nossos cursos de qualificação devido nossas aula práticas e materiais diferenciados.\nCreio que uma das melhores opções pra você agora é vir fazer uma aula experimental com a gente.\n\n**Objeção: “Esse horário não dá pra mim”**\nResposta: “Vamos encontrar juntos uma outra opção, qual seria o melhor horário para você?\"\n\n**Objeção: “Estou esperando meu cartão virar”**\nResposta: “Sem problemas! Realize a sua  matrícula em uma melhor data para você. Independente disso,vamos agendar uma visita para você conhecer melhor o seu futuro curso.”"
         }
       },
-      "id": "25b0ece1-4729-4197-bc8e-3d9024f7cbe9",
+      "id": "712f26b8-3eef-4467-b5c9-ccaf74e2f48f",
       "name": "Trix",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.6,
       "position": [
-        784,
-        1344
+        2512,
+        128
       ]
     },
     {
       "parameters": {
-        "resource": "messages-api",
-        "instanceName": "={{ $('Webhook EVO').item.json.body.instance }}",
-        "remoteJid": "={{ $('Dados').item.json.Telefone }}",
-        "messageText": "=*{{ $('Switch2').item.json['Nome do agente'] }}*\n{{ $json.output }}",
-        "options_message": {
-          "delay": 4200,
-          "linkPreview": false
-        }
+        "instanceName": "Raylan V4",
+        "token": "059A5EADFCF0-42E4-B000-110E8DCB94BE",
+        "number": "={{ $('Dados').item.json.Telefone }}",
+        "options_Create_instance": {}
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        2736,
-        1120
+        4544,
+        128
       ],
-      "id": "a0c20c8f-786e-43cf-957d-2c20528d2e0e",
+      "id": "fa93f23d-e4cd-4cdf-8c38-7257591d3990",
       "name": "Enviar texto",
       "credentials": {
         "evolutionApi": {
-          "id": "XvTBXtjBS8s2xlGF",
-          "name": "Escola Técnica Nutrix"
+          "id": "a27RHxF4BC6ESe4G",
+          "name": "Evo Raylan"
         }
       }
     },
@@ -2272,13 +1847,13 @@
       "parameters": {
         "amount": 2
       },
-      "id": "f4e444e8-6da8-4e0d-b2f0-3a6b90229364",
+      "id": "140ea4f1-34d9-4103-842c-1319ee100e3c",
       "name": "2 segundos",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2992,
-        1120
+        4800,
+        128
       ],
       "webhookId": "df09b455-bfdb-47d4-836e-4c902ce4376f"
     },
@@ -2305,10 +1880,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1152,
-        1360
+        2976,
+        128
       ],
-      "id": "f705bf38-8fa7-471f-bc72-f14be3b00af6",
+      "id": "9310cc14-95f6-41e9-809a-fb55d743f77f",
       "name": "TRIX"
     },
     {
@@ -2316,10 +1891,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolThink",
       "typeVersion": 1.1,
       "position": [
-        928,
-        1584
+        2720,
+        352
       ],
-      "id": "ee50903a-acf2-49a1-b42b-4627449af64a",
+      "id": "3dcbf7ac-f8ff-4c0b-9aa0-4c34c8edda76",
       "name": "Think"
     },
     {
@@ -2330,117 +1905,17 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        720,
-        1584
+        2496,
+        352
       ],
-      "id": "8a6069fb-3f95-4fa3-8d5d-0edc2e8572be",
+      "id": "7bdce459-fc78-4a00-a836-b54a1da272c6",
       "name": "4.1 mini",
       "credentials": {
         "openAiApi": {
-          "id": "439QCp01svSdUp1X",
-          "name": "openaiDefaultAccount"
+          "id": "qNDm6pku8uL6dS11",
+          "name": "OpenAI"
         }
       }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "cbd10d6e-a6cc-406a-9c56-0f04be76ce95",
-              "leftValue": "={{ $('getLock').item.json.propertyName }}",
-              "rightValue": "1",
-              "operator": {
-                "type": "string",
-                "operation": "equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        -4784,
-        1584
-      ],
-      "id": "10f4de5a-636b-4030-896e-fb24e64f5617",
-      "name": "If"
-    },
-    {
-      "parameters": {
-        "operation": "delete",
-        "key": "=lock-{{ $('Dados').item.json.Telefone }}"
-      },
-      "id": "31ddce07-fb84-407a-be04-163c2bdc1a64",
-      "name": "Delete lock",
-      "type": "n8n-nodes-base.redis",
-      "typeVersion": 1,
-      "position": [
-        3536,
-        1088
-      ],
-      "credentials": {
-        "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "get",
-        "key": "=lock-{{ $json.Telefone }}",
-        "options": {}
-      },
-      "id": "5abff71d-9e4a-4e08-9277-68e7424215e8",
-      "name": "getLock",
-      "type": "n8n-nodes-base.redis",
-      "typeVersion": 1,
-      "position": [
-        -4976,
-        1584
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "operation": "set",
-        "key": "=lock-{{ $('Dados').item.json.Telefone }}",
-        "value": "1",
-        "keyType": "string"
-      },
-      "id": "2eeb5b6d-2a5f-43eb-8500-8dfcd5c0905f",
-      "name": "setLock",
-      "type": "n8n-nodes-base.redis",
-      "typeVersion": 1,
-      "position": [
-        -4512,
-        1568
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
-        }
-      },
-      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -2456,151 +1931,47 @@
             },
             {
               "name": "Authorization",
-              "value": "Bearer vBkDNEwWPcDRhdvNaQsKaLwamHRr9OOL8VcwFrtJ8TgI0RprCxIhwtS5gWOgd8uH"
+              "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijk0Mzc3OGYwMWZkNGY1ZjkyZTVjYTBkZmUwMWEyN2IwMTdkZTU0NTViODM3MzM5YWY2MThkNDE1YWQ1M2IwZmQ0MjBjODg4MzJiNGQ0MGJjIn0.eyJhdWQiOiIyOWFkZTVjZC02NWZlLTQ5NDktODE4Mi0wZjE5NzgwOGE1YjgiLCJqdGkiOiI5NDM3NzhmMDFmZDRmNWY5MmU1Y2EwZGZlMDFhMjdiMDE3ZGU1NDU1YjgzNzMzOWFmNjE4ZDQxNWFkNTNiMGZkNDIwYzg4ODMyYjRkNDBiYyIsImlhdCI6MTc2MDQ4ODE2MywibmJmIjoxNzYwNDg4MTYzLCJleHAiOjE3NzIyMzY4MDAsInN1YiI6IjExMzUyMzY3IiwiZ3JhbnRfdHlwZSI6IiIsImFjY291bnRfaWQiOjM0ODExOTgzLCJiYXNlX2RvbWFpbiI6ImtvbW1vLmNvbSIsInZlcnNpb24iOjIsInNjb3BlcyI6WyJjcm0iLCJmaWxlcyIsImZpbGVzX2RlbGV0ZSIsIm5vdGlmaWNhdGlvbnMiLCJwdXNoX25vdGlmaWNhdGlvbnMiXSwidXNlcl9mbGFncyI6MCwiaGFzaF91dWlkIjoiYWVkMDFiZDMtMTNkYS00NTc5LTkzMjktYmYxMDUzNjVkNGNlIiwiYXBpX2RvbWFpbiI6ImFwaS1jLmtvbW1vLmNvbSJ9.OAppC7_-CnqatfY6pThLkOEWP-cmxgqZf_kQ0zq9cLPzQPQPWQO81m5DXlBWow9ATZDNpZxk4rpTHqArpqNq0olCRNHMuf4gaHDhyVO0aITOOSYKxDqEnPlXRhG5VDeyXFCvtkCXA9gfD73kr5WHDbeDdNklSgUHG5BPjFJYv93nfQdXvks-Q2yg3uQIy1GENoOtiTOOZierkNjj4rl_SfOAK-8yJULylK14VaMNU388ZZ_FhqzXgGfyg0JgSd7kp9TPQCS8Nv1eTcugoqve7gVJdJhDtRLMnZlQ0gSJZsoMJSbn5s8htzzpAaOHOIEKvp14Fty_UiC0J2VNhJNHJA"
             }
           ]
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "=[\n  {\n    \"id\": {{ $json.id }},\n    \"pipeline_id\": 12206147,\n    \"status_id\": 94309115\n  }\n]\n",
+        "jsonBody": "=[\n  {\n    \"id\": {{ $('id_do_lead').item.json.id }},\n    \"pipeline_id\": 12206147,\n    \"status_id\": 94309115\n  }\n]",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.2,
       "position": [
-        1152,
-        1760
+        2992,
+        352
       ],
-      "id": "03539e02-9c0a-4fa0-b50d-d39d3a3ce936",
+      "id": "b39487d1-ce30-4588-84d3-636c5541e919",
       "name": "<kommo>"
     },
     {
       "parameters": {
-        "operation": "delete",
-        "key": "=lock-{{ $('Dados').item.json.Telefone }}"
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Dados').item.json.Telefone }}",
+        "contextWindowLength": 30
       },
-      "id": "06307abb-354e-4a06-acad-c63f5a886109",
-      "name": "Delete lock1",
-      "type": "n8n-nodes-base.redis",
-      "typeVersion": 1,
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
       "position": [
-        -4336,
-        1392
+        2608,
+        352
       ],
+      "id": "4017663e-6bd4-471e-9697-81a6c879134d",
+      "name": "memory",
       "credentials": {
-        "redis": {
-          "id": "RyAtFBI2erDXr4aA",
-          "name": "redisDefaultAccount"
+        "postgres": {
+          "id": "pDvYHE9DpN1GrLiK",
+          "name": "NUTRIX"
         }
       }
     }
   ],
-  "pinData": {
-    "Webhook EVO": [
-      {
-        "json": {
-          "headers": {
-            "host": "dev.v4alfradique.com",
-            "user-agent": "axios/1.12.2",
-            "content-length": "1292",
-            "accept": "application/json, text/plain, */*",
-            "accept-encoding": "gzip, compress, deflate, br",
-            "content-type": "application/json",
-            "x-forwarded-for": "172.18.0.1",
-            "x-forwarded-host": "dev.v4alfradique.com",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "bb91ae0fedb0",
-            "x-real-ip": "172.18.0.1"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "event": "messages.upsert",
-            "instance": "Escola Técnica Nutrix",
-            "data": {
-              "key": {
-                "remoteJid": "5521967676014@s.whatsapp.net",
-                "remoteJidAlt": "5521967676014@s.whatsapp.net",
-                "fromMe": false,
-                "id": "AC602F7600E7A3A0AB862894283FC6DF"
-              },
-              "pushName": "Karen Úrsula",
-              "status": "DELIVERY_ACK",
-              "message": {
-                "conversation": "Boa tarde , gostaria de mais informações sobre de hemoterapia",
-                "messageContextInfo": {
-                  "deviceListMetadata": {
-                    "senderKeyIndexes": [],
-                    "recipientKeyIndexes": [],
-                    "recipientKeyHash": {
-                      "0": 226,
-                      "1": 181,
-                      "2": 192,
-                      "3": 171,
-                      "4": 192,
-                      "5": 27,
-                      "6": 35,
-                      "7": 38,
-                      "8": 194,
-                      "9": 167
-                    },
-                    "recipientTimestamp": 1760464135
-                  },
-                  "deviceListMetadataVersion": 2,
-                  "messageSecret": {
-                    "0": 61,
-                    "1": 138,
-                    "2": 158,
-                    "3": 255,
-                    "4": 233,
-                    "5": 177,
-                    "6": 65,
-                    "7": 133,
-                    "8": 91,
-                    "9": 159,
-                    "10": 43,
-                    "11": 46,
-                    "12": 159,
-                    "13": 230,
-                    "14": 40,
-                    "15": 44,
-                    "16": 239,
-                    "17": 156,
-                    "18": 81,
-                    "19": 158,
-                    "20": 55,
-                    "21": 112,
-                    "22": 226,
-                    "23": 33,
-                    "24": 205,
-                    "25": 158,
-                    "26": 70,
-                    "27": 226,
-                    "28": 157,
-                    "29": 41,
-                    "30": 0,
-                    "31": 95
-                  }
-                }
-              },
-              "messageType": "conversation",
-              "messageTimestamp": 1760471239,
-              "instanceId": "0c00093f-8558-4f32-a537-4fe3ca75e2dc",
-              "source": "android"
-            },
-            "destination": "https://dev.v4alfradique.com/webhook/b9210353-20ee-40ed-911b-d847cfc42386",
-            "date_time": "2025-10-14T16:47:19.929Z",
-            "sender": "5521987613033@s.whatsapp.net",
-            "server_url": "https://evo.v4alfradique.com",
-            "apikey": "8938A0DCFDDA-4D72-90E6-0CBC5ADC3D0C"
-          },
-          "webhookUrl": "https://dev.v4alfradique.com/webhook/b9210353-20ee-40ed-911b-d847cfc42386",
-          "executionMode": "production"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "connections": {
     "OpenAI3": {
       "ai_languageModel": [
@@ -2630,17 +2001,6 @@
           {
             "node": "Split de Mensagem",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Postgres Chat Memory": {
-      "ai_memory": [
-        [
-          {
-            "node": "Trix",
-            "type": "ai_memory",
             "index": 0
           }
         ]
@@ -2685,11 +2045,6 @@
         [
           {
             "node": "Switch2",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Salvar Historicoo Gerente",
             "type": "main",
             "index": 0
           }
@@ -2934,7 +2289,7 @@
       "main": [
         [
           {
-            "node": "Espera gerente Geral",
+            "node": "Get a row",
             "type": "main",
             "index": 0
           }
@@ -2979,13 +2334,6 @@
         [
           {
             "node": "Supabase",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Delete lock1",
             "type": "main",
             "index": 0
           }
@@ -3047,19 +2395,8 @@
       "main": [
         [
           {
-            "node": "getLock",
+            "node": "Rotas",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model4": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Gerente Setor",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -3088,50 +2425,6 @@
         [
           {
             "node": "Get Memory 2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Postgres Chat Memory1": {
-      "ai_memory": [
-        [
-          {
-            "node": "Gerente Setor",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "SupaBase": {
-      "ai_tool": [
-        [
-          {
-            "node": "Gerente Setor",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Gerente Setor": {
-      "main": [
-        [
-          {
-            "node": "No Operation, do nothing",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Espera gerente Geral": {
-      "main": [
-        [
-          {
-            "node": "Get a row",
             "type": "main",
             "index": 0
           }
@@ -3217,28 +2510,6 @@
         ]
       ]
     },
-    "BRENO": {
-      "main": [
-        [
-          {
-            "node": "Delete Memory",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "GABRIELA": {
-      "main": [
-        [
-          {
-            "node": "Delete Memory",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Code": {
       "main": [
         [
@@ -3285,27 +2556,10 @@
     },
     "Loop Over Items3": {
       "main": [
-        [
-          {
-            "node": "Delete lock",
-            "type": "main",
-            "index": 0
-          }
-        ],
+        [],
         [
           {
             "node": "Enviar texto",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Enviar texto": {
-      "main": [
-        [
-          {
-            "node": "2 segundos",
             "type": "main",
             "index": 0
           }
@@ -3356,40 +2610,6 @@
         ]
       ]
     },
-    "If": {
-      "main": [
-        [],
-        [
-          {
-            "node": "setLock",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "getLock": {
-      "main": [
-        [
-          {
-            "node": "If",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "setLock": {
-      "main": [
-        [
-          {
-            "node": "Rotas",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "<kommo>": {
       "ai_tool": [
         [
@@ -3400,19 +2620,39 @@
           }
         ]
       ]
+    },
+    "memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Trix",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto": {
+      "main": [
+        [
+          {
+            "node": "2 segundos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
-    "executionOrder": "v0",
-    "callerPolicy": "workflowsFromSameOwner",
-    "availableInMCP": false
+    "executionOrder": "v1"
   },
-  "versionId": "14e4517b-0b9f-4ea2-b5eb-5932ed87513c",
+  "versionId": "adb50cbf-1206-473a-bd37-ddd2b73eb031",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "3e70ac5a033d42a62547a2ff4ddc828b454dfb31f1f831fb6bf7938890456ff3"
+    "instanceId": "f1cfeb8f41dc322c126e7409aa54fc6e1083cb1f26bdff0cc79593bba0888256"
   },
-  "id": "YgPtfsyqywMFNFce",
+  "id": "oUqyGNs5r3ezXXyf",
   "tags": []
 }
